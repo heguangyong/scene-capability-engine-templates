@@ -7,43 +7,53 @@ This repository contains high-quality, community-contributed Spec templates to h
 ## 🚀 Quick Start
 
 ```bash
-# List available templates
-kse templates list
-
-# Search for templates
-kse templates search "api"
-
-# Create a new Spec from a template
-kse spec create my-feature --template web-features/rest-api
-
 # Update your local template cache
 kse templates update
+
+# List all templates (grouped by category)
+kse templates list
+
+# Filter by category
+kse templates list --category backend-features
+
+# Search by keyword (matches name, description, tags)
+kse templates search "rest"
+kse templates search "quality"
+
+# View template details and applicable scenarios
+kse templates show backend-features/pure-restful-backend
+
+# Create a new Spec from a template
+kse spec create my-feature --template backend-features/pure-restful-backend
 ```
 
 ## 📁 Template Categories
 
-- **web-features/** - Frontend and web application features
-- **backend-features/** - Backend services and APIs
-- **infrastructure/** - Infrastructure and deployment
-- **devops/** - DevOps and CI/CD pipelines
-- **testing/** - Testing frameworks and strategies
+| Category | Description | Templates |
+|----------|-------------|-----------|
+| **web-features/** | Frontend and web application features | 2 |
+| **backend-features/** | Backend services and APIs | 2 |
+| **architecture/** | System architecture and design patterns | 1 |
+| **quality/** | Quality assurance and technical debt | 1 |
 
 ## 🎯 Available Templates
 
-### Web Features
-- `rest-api` - RESTful API endpoints with validation and error handling ✅
-- `graphql-api` - GraphQL API with schema and resolvers ✅
+| Template ID | Name | Difficulty | Tags | Use When... |
+|-------------|------|------------|------|-------------|
+| `web-features/rest-api` | REST API Feature | intermediate | api, rest, http, validation | Creating RESTful API endpoints, CRUD operations, microservices |
+| `web-features/graphql-api` | GraphQL API Feature | intermediate | api, graphql, schema, resolvers | Building GraphQL APIs, flexible data queries, real-time apps |
+| `backend-features/database-integration` | Database Integration | intermediate | database, schema, migrations, orm | Setting up database, data persistence layer, migrations |
+| `backend-features/pure-restful-backend` | Pure RESTful Backend | advanced | rest, jetty, java, modular-architecture | Building REST backend from scratch, modernizing legacy backend, embedded Jetty microservices |
+| `architecture/architecture-design` | Architecture Design | advanced | architecture, system-design, components, data-flow | Designing new system architecture, restructuring apps, microservices decomposition |
+| `quality/phase2-quality-debt-closure` | Quality Debt Closure | intermediate | quality, testing, coverage, technical-debt | Improving test coverage, closing technical debt, quality improvement sprints |
 
-### Backend Features
-- `database-integration` - Database schema and migrations ✅
+### How to Choose
 
-### Coming Soon
-- `web-features/file-upload` - File upload with validation and storage
-- `backend-features/caching-layer` - Caching strategy with Redis/Memcached
-- `backend-features/message-queue` - Message queue integration
-- `infrastructure/ci-cd-pipeline` - Continuous integration and deployment
-- `infrastructure/monitoring-setup` - Application monitoring and alerting
-- `infrastructure/deployment-automation` - Automated deployment workflows
+- **Building a new API?** → `web-features/rest-api` (simple) or `backend-features/pure-restful-backend` (full stack)
+- **Need GraphQL?** → `web-features/graphql-api`
+- **Adding a database?** → `backend-features/database-integration`
+- **Designing system architecture?** → `architecture/architecture-design`
+- **Improving code quality?** → `quality/phase2-quality-debt-closure`
 
 ## 📝 Template Format
 
@@ -115,6 +125,7 @@ Thanks to all contributors who have shared their templates with the community!
 
 ---
 
-**Version**: 1.0.0  
-**Last Updated**: 2025-01-30  
+**Version**: 1.1.0  
+**Last Updated**: 2026-02-11  
+**Templates**: 6  
 **Maintained by**: [kse-team](https://github.com/heguangyong/kiro-spec-engine)
