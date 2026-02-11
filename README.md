@@ -35,6 +35,7 @@ kse spec create my-feature --template backend-features/pure-restful-backend
 | **backend-features/** | Backend services and APIs | 2 |
 | **architecture/** | System architecture and design patterns | 1 |
 | **quality/** | Quality assurance and technical debt | 1 |
+| **domain-modeling/** | Business domain analysis and data modeling | 1 |
 
 ## 🎯 Available Templates
 
@@ -46,14 +47,27 @@ kse spec create my-feature --template backend-features/pure-restful-backend
 | `backend-features/pure-restful-backend` | Pure RESTful Backend | advanced | rest, jetty, java, modular-architecture | Building REST backend from scratch, modernizing legacy backend, embedded Jetty microservices |
 | `architecture/architecture-design` | Architecture Design | advanced | architecture, system-design, components, data-flow | Designing new system architecture, restructuring apps, microservices decomposition |
 | `quality/phase2-quality-debt-closure` | Quality Debt Closure | intermediate | quality, testing, coverage, technical-debt | Improving test coverage, closing technical debt, quality improvement sprints |
+| `domain-modeling/domain-analysis` | Domain Analysis | intermediate | domain-modeling, data-model, entity-relationship, state-machine | Analyzing business domains, building data models, designing entity relationships and lifecycles |
 
 ### How to Choose
 
+- **Starting a new business domain?** → `domain-modeling/domain-analysis` (start here — define entities, relationships, rules first)
 - **Building a new API?** → `web-features/rest-api` (simple) or `backend-features/pure-restful-backend` (full stack)
 - **Need GraphQL?** → `web-features/graphql-api`
 - **Adding a database?** → `backend-features/database-integration`
 - **Designing system architecture?** → `architecture/architecture-design`
 - **Improving code quality?** → `quality/phase2-quality-debt-closure`
+
+### Recommended Template Chain (Full Project)
+
+For a complete business application, use templates in this order:
+
+```
+1. domain-modeling/domain-analysis        → Define what to build (entities, rules, processes)
+2. architecture/architecture-design       → Define how to build it (architecture, tech stack)
+3. backend-features/pure-restful-backend  → Build the backend (REST API, services, data layer)
+4. quality/phase2-quality-debt-closure    → Ensure quality (test coverage, debt closure)
+```
 
 ## 📝 Template Format
 
@@ -125,7 +139,7 @@ Thanks to all contributors who have shared their templates with the community!
 
 ---
 
-**Version**: 1.1.0  
+**Version**: 1.2.0  
 **Last Updated**: 2026-02-11  
-**Templates**: 6  
+**Templates**: 7  
 **Maintained by**: [kse-team](https://github.com/heguangyong/kiro-spec-engine)

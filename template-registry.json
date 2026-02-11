@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "last_updated": "2026-02-11",
   "templates": [
     {
@@ -133,6 +133,29 @@
       "author": "FallingAKS",
       "created_at": "2026-02-10",
       "updated_at": "2026-02-10"
+    },
+    {
+      "id": "domain-modeling/domain-analysis",
+      "name": "Domain Analysis",
+      "category": "domain-modeling",
+      "description": "Template for domain analysis and business modeling — identify entities, relationships, business processes, state machines, and rules from user requirements. Includes ER diagram, API endpoint planning, and data migration strategy.",
+      "difficulty": "intermediate",
+      "tags": ["domain-modeling", "data-model", "entity-relationship", "business-process", "state-machine", "requirements-analysis"],
+      "applicable_scenarios": [
+        "Analyzing a new business domain before implementation",
+        "Building data models for industry-specific applications",
+        "Designing entity relationships and business rules",
+        "Planning API endpoints from domain models",
+        "Modeling state machines and entity lifecycles"
+      ],
+      "files": [
+        "requirements.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "author": "FallingAKS",
+      "created_at": "2026-02-11",
+      "updated_at": "2026-02-11"
     }
   ]
 }
