@@ -608,6 +608,62 @@
       "author": "FallingAKS",
       "created_at": "2026-02-16",
       "updated_at": "2026-02-16"
+    },
+    {
+      "id": "backend-features/moqui-full-capability-closure-program",
+      "name": "Moqui Full Capability Closure Program",
+      "category": "backend-features",
+      "description": "Template for Moqui full capability closure, matrix governance, and multi-agent orchestration",
+      "difficulty": "advanced",
+      "tags": [
+        "moqui",
+        "full",
+        "capability",
+        "closure",
+        "orchestration",
+        "moqui-full-capability"
+      ],
+      "applicable_scenarios": [
+        "Drive full capability closure from baseline matrix to verified implementation",
+        "Coordinate master and sub-agent execution with context continuity",
+        "Package completed closure workflow into reusable KSE template"
+      ],
+      "files": [
+        "requirements.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "author": "FallingAKS",
+      "created_at": "2026-02-16",
+      "updated_at": "2026-02-16"
+    },
+    {
+      "id": "backend-features/331-gap-zero-closure",
+      "name": "331 Gap Zero Closure",
+      "category": "backend-features",
+      "description": "Template for 331 assessment gap-zero closure, phased execution, and evidence-based acceptance",
+      "difficulty": "advanced",
+      "tags": [
+        "331",
+        "gap",
+        "zero",
+        "closure",
+        "acceptance",
+        "331-gap-zero"
+      ],
+      "applicable_scenarios": [
+        "Converge 331 project evaluation gaps into a single closure backlog",
+        "Execute phased P0/P1/P2 closure with evidence traceability",
+        "Produce reusable gap-zero governance assets and final report"
+      ],
+      "files": [
+        "requirements.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "author": "FallingAKS",
+      "created_at": "2026-02-16",
+      "updated_at": "2026-02-16"
     }
   ]
 }
