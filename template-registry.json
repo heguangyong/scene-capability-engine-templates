@@ -1,6 +1,6 @@
-{
-  "version": "1.4.0",
-  "last_updated": "2026-02-16",
+﻿{
+  "version": "1.5.0",
+  "last_updated": "2026-02-18",
   "templates": [
     {
       "id": "web-features/rest-api",
@@ -776,6 +776,249 @@
       "author": "FallingAKS",
       "created_at": "2026-02-16",
       "updated_at": "2026-02-16"
+    },
+    {
+      "id": "web-features/suite-scene-canvas-visualization",
+      "name": "Suite Scene Canvas Visualization",
+      "category": "web-features",
+      "description": "Template for visualizing suite scene composition cards, ER/BR/DL summaries, and key flow chains in SuiteHub.",
+      "difficulty": "intermediate",
+      "tags": [
+        "scene",
+        "suite-hub",
+        "visualization",
+        "moqui",
+        "er-br-dl"
+      ],
+      "applicable_scenarios": [
+        "Building a scene canvas view across multiple suites",
+        "Making ER/BR/DL and key flows visible in one hub page",
+        "Improving module routing from scene cards"
+      ],
+      "files": [
+        "requirements.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "author": "FallingAKS",
+      "created_at": "2026-02-18",
+      "updated_at": "2026-02-18"
+    },
+    {
+      "id": "web-features/scene-composition-interaction-hardening",
+      "name": "Scene Composition Interaction Hardening",
+      "category": "web-features",
+      "description": "Template for strengthening scene-canvas interaction with suite filters, dependency hints, and fast module navigation.",
+      "difficulty": "intermediate",
+      "tags": [
+        "scene",
+        "interaction",
+        "dependency",
+        "suite-hub",
+        "routing"
+      ],
+      "applicable_scenarios": [
+        "Adding suite-level filtering to scene cards",
+        "Surfacing module dependencies with quick jump actions",
+        "Hardening scene-canvas interaction without breaking existing routing"
+      ],
+      "files": [
+        "requirements.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "author": "FallingAKS",
+      "created_at": "2026-02-18",
+      "updated_at": "2026-02-18"
+    },
+    {
+      "id": "web-features/suite-scene-execution-playbook",
+      "name": "Suite Scene Execution Playbook",
+      "category": "web-features",
+      "description": "Template for building a scene execution playbook panel with phase/action drilldown and ER/BR/DL mapping.",
+      "difficulty": "advanced",
+      "tags": [
+        "scene",
+        "execution",
+        "playbook",
+        "suite-hub",
+        "drilldown"
+      ],
+      "applicable_scenarios": [
+        "Creating execution step matrices from scene blueprints",
+        "Providing module-level scene drilldown for operators",
+        "Keeping execution views aligned with scene canvas data"
+      ],
+      "files": [
+        "requirements.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "author": "FallingAKS",
+      "created_at": "2026-02-18",
+      "updated_at": "2026-02-18"
+    },
+    {
+      "id": "web-features/cross-suite-dependency-route-drilldown",
+      "name": "Cross-Suite Dependency Route Drilldown",
+      "category": "web-features",
+      "description": "Template for exposing cross-suite dependency paths and enabling route-level drilldown in scene execution panels.",
+      "difficulty": "advanced",
+      "tags": [
+        "scene",
+        "dependency",
+        "drilldown",
+        "suite-hub",
+        "routing"
+      ],
+      "applicable_scenarios": [
+        "Showing dependency routes per execution step",
+        "Navigating between related modules across suites",
+        "Reducing ambiguity in cross-suite execution chains"
+      ],
+      "files": [
+        "requirements.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "author": "FallingAKS",
+      "created_at": "2026-02-18",
+      "updated_at": "2026-02-18"
+    },
+    {
+      "id": "web-features/suite-scene-decision-cockpit",
+      "name": "Suite Scene Decision Cockpit",
+      "category": "web-features",
+      "description": "Template for generating decision signals from scene execution data and presenting risk-driven actions in a cockpit UI.",
+      "difficulty": "advanced",
+      "tags": [
+        "scene",
+        "decision",
+        "cockpit",
+        "risk",
+        "suite-hub"
+      ],
+      "applicable_scenarios": [
+        "Building actionable decision signal cards for scene modules",
+        "Converting ER/BR/DL gaps into prioritized actions",
+        "Keeping decision insights synchronized with module switching"
+      ],
+      "files": [
+        "requirements.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "author": "FallingAKS",
+      "created_at": "2026-02-18",
+      "updated_at": "2026-02-18"
+    },
+    {
+      "id": "web-features/scene-runbook-export-and-playbook-linking",
+      "name": "Scene Runbook Export and Playbook Linking",
+      "category": "web-features",
+      "description": "Template for exporting module-scoped runbook markdown and linking execution playbooks to multi-agent handoff workflows.",
+      "difficulty": "advanced",
+      "tags": [
+        "scene",
+        "runbook",
+        "playbook",
+        "export",
+        "handoff"
+      ],
+      "applicable_scenarios": [
+        "Exporting scene execution context for human or agent handoff",
+        "Generating copy-ready runbooks from active module data",
+        "Connecting playbook drilldown with governance evidence"
+      ],
+      "files": [
+        "requirements.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "author": "FallingAKS",
+      "created_at": "2026-02-18",
+      "updated_at": "2026-02-18"
+    },
+    {
+      "id": "web-features/suite-scene-action-queue-orchestration",
+      "name": "Suite Scene Action Queue Orchestration",
+      "category": "web-features",
+      "description": "Template for mapping decision signals to actionable queues with owner/SLA assignment and checklist visibility.",
+      "difficulty": "advanced",
+      "tags": [
+        "scene",
+        "action-queue",
+        "orchestration",
+        "sla",
+        "owner"
+      ],
+      "applicable_scenarios": [
+        "Turning decision signals into execution queues",
+        "Assigning owners and SLAs by priority levels",
+        "Maintaining action-checklist visibility in suite hubs"
+      ],
+      "files": [
+        "requirements.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "author": "FallingAKS",
+      "created_at": "2026-02-18",
+      "updated_at": "2026-02-18"
+    },
+    {
+      "id": "web-features/scene-action-pack-export-and-followup-linking",
+      "name": "Scene Action Pack Export and Follow-up Linking",
+      "category": "web-features",
+      "description": "Template for exporting action packs from action queues and linking follow-up workflows for agents and operators.",
+      "difficulty": "advanced",
+      "tags": [
+        "scene",
+        "action-pack",
+        "export",
+        "follow-up",
+        "orchestration"
+      ],
+      "applicable_scenarios": [
+        "Producing copy-ready action packs for distributed execution",
+        "Linking action queue outputs to follow-up workflows",
+        "Preserving runbook and traceability features while exporting action packs"
+      ],
+      "files": [
+        "requirements.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "author": "FallingAKS",
+      "created_at": "2026-02-18",
+      "updated_at": "2026-02-18"
+    },
+    {
+      "id": "quality/scene-governance-closure",
+      "name": "Scene Governance Closure",
+      "category": "quality",
+      "description": "Template for scene capability governance closure with status/doctor/final-sync gates, ontology checks, template export, and context synchronization.",
+      "difficulty": "advanced",
+      "tags": [
+        "scene",
+        "governance",
+        "ontology",
+        "final-sync",
+        "evidence"
+      ],
+      "applicable_scenarios": [
+        "Closing a scene capability delivery batch with reproducible governance gates",
+        "Producing orchestration, ontology, and template evidence packages",
+        "Synchronizing CURRENT_CONTEXT and template export manifests for next-round continuity"
+      ],
+      "files": [
+        "requirements.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "author": "FallingAKS",
+      "created_at": "2026-02-18",
+      "updated_at": "2026-02-18"
     }
   ]
 }
