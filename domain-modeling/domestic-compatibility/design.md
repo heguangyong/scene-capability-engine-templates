@@ -203,3 +203,25 @@ kse_version: 3.0.2
 **版本**: 1.0  
 **作者**: Kiro AI  
 **审核状态**: 待审核
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **DomesticCompatibilityRecord**: Core domain record for Domestic Compatibility scenarios.
+- **DomesticCompatibilityProcess**: Process context handling lifecycle transitions.
+- **DomesticCompatibilityAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **DomesticCompatibilityRecord** 1:N **DomesticCompatibilityProcess** (lifecycle orchestration).
+- **DomesticCompatibilityProcess** 1:N **DomesticCompatibilityAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

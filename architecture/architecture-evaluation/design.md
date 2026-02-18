@@ -594,3 +594,25 @@ def parse_cluster_config():
 **版本**: 1.0  
 **作者**: Kiro AI  
 **审核状态**: 待审核
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **ArchitectureEvaluationRecord**: Core domain record for Architecture Evaluation scenarios.
+- **ArchitectureEvaluationProcess**: Process context handling lifecycle transitions.
+- **ArchitectureEvaluationAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **ArchitectureEvaluationRecord** 1:N **ArchitectureEvaluationProcess** (lifecycle orchestration).
+- **ArchitectureEvaluationProcess** 1:N **ArchitectureEvaluationAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

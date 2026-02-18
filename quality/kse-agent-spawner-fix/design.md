@@ -27,3 +27,25 @@ kse_version: 3.0.2
 
 - 保留启动日志、stdout/stderr、编排输出日志作为回归依据。  
 - 在 Spec 中归档测试脚本，保证后续版本回归可复现。
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **KseAgentSpawnerFixRecord**: Core domain record for Kse Agent Spawner Fix scenarios.
+- **KseAgentSpawnerFixProcess**: Process context handling lifecycle transitions.
+- **KseAgentSpawnerFixAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **KseAgentSpawnerFixRecord** 1:N **KseAgentSpawnerFixProcess** (lifecycle orchestration).
+- **KseAgentSpawnerFixProcess** 1:N **KseAgentSpawnerFixAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

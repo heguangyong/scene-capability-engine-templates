@@ -46,3 +46,25 @@ kse_version: 3.0.2
 - 对应 `03-00` 需求: 2.1
 - 上游依赖: 无
 - 下游输入: `03-06`
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **ApiCoverageAssessmentRecord**: Core domain record for Api Coverage Assessment scenarios.
+- **ApiCoverageAssessmentProcess**: Process context handling lifecycle transitions.
+- **ApiCoverageAssessmentAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **ApiCoverageAssessmentRecord** 1:N **ApiCoverageAssessmentProcess** (lifecycle orchestration).
+- **ApiCoverageAssessmentProcess** 1:N **ApiCoverageAssessmentAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

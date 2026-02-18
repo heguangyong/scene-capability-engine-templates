@@ -40,3 +40,25 @@ kse_version: 3.0.2
 - 对应 `03-00` 需求: 1.x + 2.x 的综合验收
 - 上游依赖: `03-04`, `03-08`
 - 输出: 主计划最终验收输入
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **PerformanceAndFullValidationRecord**: Core domain record for Performance And Full Validation scenarios.
+- **PerformanceAndFullValidationProcess**: Process context handling lifecycle transitions.
+- **PerformanceAndFullValidationAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **PerformanceAndFullValidationRecord** 1:N **PerformanceAndFullValidationProcess** (lifecycle orchestration).
+- **PerformanceAndFullValidationProcess** 1:N **PerformanceAndFullValidationAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

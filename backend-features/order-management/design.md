@@ -94,3 +94,25 @@ new OrderController(orderService).register(router);
 - ContextPanel 注册 OrderPanel
 - router/index.js 添加 /order, /order/:orderId 路由
 - icons.js 导入 ShoppingCart 图标
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **OrderManagementRecord**: Core domain record for Order Management scenarios.
+- **OrderManagementProcess**: Process context handling lifecycle transitions.
+- **OrderManagementAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **OrderManagementRecord** 1:N **OrderManagementProcess** (lifecycle orchestration).
+- **OrderManagementProcess** 1:N **OrderManagementAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

@@ -85,3 +85,25 @@ new FacilityController(facilityService).register(router);
 - ContextPanel 注册 FacilityPanel
 - router/index.js 添加 /facility, /facility/:facilityId 路由
 - icons.js 导入 Warehouse 图标
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **FacilityInventoryRecord**: Core domain record for Facility Inventory scenarios.
+- **FacilityInventoryProcess**: Process context handling lifecycle transitions.
+- **FacilityInventoryAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **FacilityInventoryRecord** 1:N **FacilityInventoryProcess** (lifecycle orchestration).
+- **FacilityInventoryProcess** 1:N **FacilityInventoryAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

@@ -387,3 +387,25 @@ BY_PRODUCT — 副产品
 - **单元测试**: 验证具体示例、边界条件、错误场景
 - **属性测试**: 验证跨所有输入的通用属性
 - 两者互补，共同提供全面覆盖
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **BomManagementRecord**: Core domain record for Bom Management scenarios.
+- **BomManagementProcess**: Process context handling lifecycle transitions.
+- **BomManagementAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **BomManagementRecord** 1:N **BomManagementProcess** (lifecycle orchestration).
+- **BomManagementProcess** 1:N **BomManagementAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

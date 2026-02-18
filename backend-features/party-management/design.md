@@ -510,3 +510,25 @@ PartyService 返回 `Map<String, Object>`，包含 `error`、`errorCode`、`erro
 - **属性测试**：Property 12-15 的前端纯函数属性
 - **每个属性测试最少 100 次迭代**
 - **标签格式**：`Feature: {{SPEC_NAME}}, Property {number}: {property_text}`
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **PartyManagementRecord**: Core domain record for Party Management scenarios.
+- **PartyManagementProcess**: Process context handling lifecycle transitions.
+- **PartyManagementAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **PartyManagementRecord** 1:N **PartyManagementProcess** (lifecycle orchestration).
+- **PartyManagementProcess** 1:N **PartyManagementAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

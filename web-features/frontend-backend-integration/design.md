@@ -360,3 +360,25 @@ frontend/src/renderer/services/__tests__/
 - `auth-expired` 事件处理
 - Router Guard 重定向逻辑
 - `VITE_SKIP_AUTH` 环境变量行为
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **FrontendBackendIntegrationRecord**: Core domain record for Frontend Backend Integration scenarios.
+- **FrontendBackendIntegrationProcess**: Process context handling lifecycle transitions.
+- **FrontendBackendIntegrationAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **FrontendBackendIntegrationRecord** 1:N **FrontendBackendIntegrationProcess** (lifecycle orchestration).
+- **FrontendBackendIntegrationProcess** 1:N **FrontendBackendIntegrationAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

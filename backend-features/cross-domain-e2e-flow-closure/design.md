@@ -26,3 +26,25 @@ kse_version: 3.0.2
 - 场景用例集
 - 运行报告
 - 缺陷与修复清单
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **CrossDomainE2eFlowClosureRecord**: Core domain record for Cross Domain E2e Flow Closure scenarios.
+- **CrossDomainE2eFlowClosureProcess**: Process context handling lifecycle transitions.
+- **CrossDomainE2eFlowClosureAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **CrossDomainE2eFlowClosureRecord** 1:N **CrossDomainE2eFlowClosureProcess** (lifecycle orchestration).
+- **CrossDomainE2eFlowClosureProcess** 1:N **CrossDomainE2eFlowClosureAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

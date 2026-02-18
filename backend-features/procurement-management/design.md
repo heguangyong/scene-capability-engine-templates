@@ -248,3 +248,25 @@ OrderApproved → OrderCancelled
 ### 7.2 前端测试
 - **框架**: Vitest + fast-check
 - **属性测试**: 验证 Property 8
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **ProcurementManagementRecord**: Core domain record for Procurement Management scenarios.
+- **ProcurementManagementProcess**: Process context handling lifecycle transitions.
+- **ProcurementManagementAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **ProcurementManagementRecord** 1:N **ProcurementManagementProcess** (lifecycle orchestration).
+- **ProcurementManagementProcess** 1:N **ProcurementManagementAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

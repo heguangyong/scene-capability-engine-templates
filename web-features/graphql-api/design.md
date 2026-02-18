@@ -377,3 +377,20 @@ const complexityPlugin = {
 **Version**: 1.0.0  
 **Created**: {{DATE}}  
 **Author**: {{AUTHOR}}
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **GraphqlApiRecord**: Core domain record for Graphql Api scenarios.
+- **GraphqlApiProcess**: Process context handling lifecycle transitions.
+- **GraphqlApiAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **GraphqlApiRecord** 1:N **GraphqlApiProcess** (lifecycle orchestration).
+- **GraphqlApiProcess** 1:N **GraphqlApiAuditEvent** (traceability and compliance).
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

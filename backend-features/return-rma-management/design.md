@@ -228,3 +228,25 @@ export interface ReturnItem {
 | `frontend/src/renderer/components/panels/ContextPanel.vue` | 修改 |
 | `frontend/src/renderer/App.vue` | 修改 |
 | `frontend/src/renderer/router/index.js` | 修改 |
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **ReturnRmaManagementRecord**: Core domain record for Return Rma Management scenarios.
+- **ReturnRmaManagementProcess**: Process context handling lifecycle transitions.
+- **ReturnRmaManagementAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **ReturnRmaManagementRecord** 1:N **ReturnRmaManagementProcess** (lifecycle orchestration).
+- **ReturnRmaManagementProcess** 1:N **ReturnRmaManagementAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

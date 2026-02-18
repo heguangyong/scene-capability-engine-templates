@@ -435,3 +435,25 @@ PENDING → RUNNING → COMPLETED / FAILED
 1. 由单个 property-based test 实现
 2. 运行至少 100 次迭代
 3. 注释引用设计文档中的 Property 编号
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **ServiceInvocationRecord**: Core domain record for Service Invocation scenarios.
+- **ServiceInvocationProcess**: Process context handling lifecycle transitions.
+- **ServiceInvocationAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **ServiceInvocationRecord** 1:N **ServiceInvocationProcess** (lifecycle orchestration).
+- **ServiceInvocationProcess** 1:N **ServiceInvocationAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

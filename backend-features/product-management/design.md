@@ -473,3 +473,25 @@ interface IdentificationRequest {
 | productStore 纯函数 | 属性测试 | filterProductsByKeyword、validateCreateProductForm |
 | productStore actions | 单元测试 | 异步操作、状态更新、错误处理 |
 | Vue 组件 | 单元测试 | 关键交互、渲染验证 |
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **ProductManagementRecord**: Core domain record for Product Management scenarios.
+- **ProductManagementProcess**: Process context handling lifecycle transitions.
+- **ProductManagementAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **ProductManagementRecord** 1:N **ProductManagementProcess** (lifecycle orchestration).
+- **ProductManagementProcess** 1:N **ProductManagementAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

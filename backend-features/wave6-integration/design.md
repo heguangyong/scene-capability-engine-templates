@@ -115,3 +115,25 @@ mfg: [..., 'work-calendar'],     // 追加 work-calendar
 编译验证为核心质量保证手段：
 - 前端：`npm run build`
 - 后端：`mvn clean package -DskipTests`
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **Wave6IntegrationRecord**: Core domain record for Wave6 Integration scenarios.
+- **Wave6IntegrationProcess**: Process context handling lifecycle transitions.
+- **Wave6IntegrationAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **Wave6IntegrationRecord** 1:N **Wave6IntegrationProcess** (lifecycle orchestration).
+- **Wave6IntegrationProcess** 1:N **Wave6IntegrationAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

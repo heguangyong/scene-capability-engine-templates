@@ -53,3 +53,25 @@ kse_version: 3.0.2
 2. `kse status` 可看到本 Spec 任务推进。
 3. `kse docs validate --all` 保持合规。
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **Phase2QualityDebtClosureRecord**: Core domain record for Phase2 Quality Debt Closure scenarios.
+- **Phase2QualityDebtClosureProcess**: Process context handling lifecycle transitions.
+- **Phase2QualityDebtClosureAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **Phase2QualityDebtClosureRecord** 1:N **Phase2QualityDebtClosureProcess** (lifecycle orchestration).
+- **Phase2QualityDebtClosureProcess** 1:N **Phase2QualityDebtClosureAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

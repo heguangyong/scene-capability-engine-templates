@@ -45,3 +45,25 @@ kse_version: 3.0.2
 - 对应 `03-00` 需求: 1.3
 - 上游依赖: `03-03`
 - 下游输入: `03-09`
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **GroovyRuntimeRemovalRecord**: Core domain record for Groovy Runtime Removal scenarios.
+- **GroovyRuntimeRemovalProcess**: Process context handling lifecycle transitions.
+- **GroovyRuntimeRemovalAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **GroovyRuntimeRemovalRecord** 1:N **GroovyRuntimeRemovalProcess** (lifecycle orchestration).
+- **GroovyRuntimeRemovalProcess** 1:N **GroovyRuntimeRemovalAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

@@ -797,3 +797,24 @@ Phase 1 is considered successful when:
 **Created**: 2026-02-02  
 **Author**: Kiro AI  
 **Status**: Complete - Ready for Tasks Creation
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **RefactoringPhase1AnalysisRecord**: Core domain record for Refactoring Phase1 Analysis scenarios.
+- **RefactoringPhase1AnalysisProcess**: Process context handling lifecycle transitions.
+- **RefactoringPhase1AnalysisAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **RefactoringPhase1AnalysisRecord** 1:N **RefactoringPhase1AnalysisProcess** (lifecycle orchestration).
+- **RefactoringPhase1AnalysisProcess** 1:N **RefactoringPhase1AnalysisAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

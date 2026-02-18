@@ -536,3 +536,25 @@ interface AuditLogEntry {
 - 前端: `frontend/src/renderer/services/__tests__/adminApiService.test.ts`
 - 前端: `frontend/src/renderer/stores/__tests__/userAdmin.test.ts`
 - 前端: `frontend/src/renderer/stores/__tests__/auditLog.test.ts`
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **SystemAdminModuleRecord**: Core domain record for System Admin Module scenarios.
+- **SystemAdminModuleProcess**: Process context handling lifecycle transitions.
+- **SystemAdminModuleAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **SystemAdminModuleRecord** 1:N **SystemAdminModuleProcess** (lifecycle orchestration).
+- **SystemAdminModuleProcess** 1:N **SystemAdminModuleAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

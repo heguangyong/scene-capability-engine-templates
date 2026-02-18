@@ -403,3 +403,25 @@ interface ModuleConfig {
 - 子系统面板过渡动画
 - 移动端适配
 - Electron localStorage 缓存清除（Ctrl+Shift+R）
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **SubsystemNavigationRecord**: Core domain record for Subsystem Navigation scenarios.
+- **SubsystemNavigationProcess**: Process context handling lifecycle transitions.
+- **SubsystemNavigationAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **SubsystemNavigationRecord** 1:N **SubsystemNavigationProcess** (lifecycle orchestration).
+- **SubsystemNavigationProcess** 1:N **SubsystemNavigationAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

@@ -33,3 +33,25 @@ kse_version: 3.0.2
 
 - 每个场景保留执行时间、输入主键、输出状态
 - 场景执行结果可用于跨批次趋势对比
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **CrossDomainE2eRegressionGuardRecord**: Core domain record for Cross Domain E2e Regression Guard scenarios.
+- **CrossDomainE2eRegressionGuardProcess**: Process context handling lifecycle transitions.
+- **CrossDomainE2eRegressionGuardAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **CrossDomainE2eRegressionGuardRecord** 1:N **CrossDomainE2eRegressionGuardProcess** (lifecycle orchestration).
+- **CrossDomainE2eRegressionGuardProcess** 1:N **CrossDomainE2eRegressionGuardAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

@@ -482,3 +482,25 @@ Rendered UI
 **版本**: 1.0  
 **状态**: 设计完成  
 **下一步**: 可行性研究和原型开发
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **MoquiModernizationDesignRecord**: Core domain record for Moqui Modernization Design scenarios.
+- **MoquiModernizationDesignProcess**: Process context handling lifecycle transitions.
+- **MoquiModernizationDesignAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **MoquiModernizationDesignRecord** 1:N **MoquiModernizationDesignProcess** (lifecycle orchestration).
+- **MoquiModernizationDesignProcess** 1:N **MoquiModernizationDesignAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

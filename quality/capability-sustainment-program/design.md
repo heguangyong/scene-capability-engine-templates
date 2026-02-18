@@ -73,3 +73,25 @@ kse_version: 3.0.2
 2. `kse status --verbose` 与 `kse doctor --docs` 通过  
 3. 核心模板 `search/show` 复核通过并落盘  
 4. `CURRENT_CONTEXT.md`、`handoff-manifest.json`、`open-risks.md` 同步更新
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **CapabilitySustainmentProgramRecord**: Core domain record for Capability Sustainment Program scenarios.
+- **CapabilitySustainmentProgramProcess**: Process context handling lifecycle transitions.
+- **CapabilitySustainmentProgramAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **CapabilitySustainmentProgramRecord** 1:N **CapabilitySustainmentProgramProcess** (lifecycle orchestration).
+- **CapabilitySustainmentProgramProcess** 1:N **CapabilitySustainmentProgramAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

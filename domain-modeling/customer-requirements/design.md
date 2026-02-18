@@ -533,3 +533,20 @@ void testGoodsIssueInventoryReduction(@ForAll Material material,
 - Responsive design validation
 - Accessibility compliance
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **CustomerRequirementsRecord**: Core domain record for Customer Requirements scenarios.
+- **CustomerRequirementsProcess**: Process context handling lifecycle transitions.
+- **CustomerRequirementsAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **CustomerRequirementsRecord** 1:N **CustomerRequirementsProcess** (lifecycle orchestration).
+- **CustomerRequirementsProcess** 1:N **CustomerRequirementsAuditEvent** (traceability and compliance).
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

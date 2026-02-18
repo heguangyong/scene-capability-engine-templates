@@ -24,3 +24,25 @@ kse_version: 3.0.2
 - 校准预警可触发
 - 条码标识可用于查询
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **ToolFixtureManagementRecord**: Core domain record for Tool Fixture Management scenarios.
+- **ToolFixtureManagementProcess**: Process context handling lifecycle transitions.
+- **ToolFixtureManagementAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **ToolFixtureManagementRecord** 1:N **ToolFixtureManagementProcess** (lifecycle orchestration).
+- **ToolFixtureManagementProcess** 1:N **ToolFixtureManagementAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

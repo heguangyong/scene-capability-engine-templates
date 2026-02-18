@@ -39,3 +39,25 @@ kse_version: 3.0.2
 - 对应 `03-00` 需求: 1.1
 - 上游依赖: `03-02`
 - 下游输入: `03-04`
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **BatchServiceMigrationRecord**: Core domain record for Batch Service Migration scenarios.
+- **BatchServiceMigrationProcess**: Process context handling lifecycle transitions.
+- **BatchServiceMigrationAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **BatchServiceMigrationRecord** 1:N **BatchServiceMigrationProcess** (lifecycle orchestration).
+- **BatchServiceMigrationProcess** 1:N **BatchServiceMigrationAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

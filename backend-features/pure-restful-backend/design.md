@@ -952,3 +952,25 @@ backend/runtime/component/rest-api/src/test/java/org/moqui/rest/
     ├── RestServerIntegrationTest.java # Full server startup + endpoint tests
     └── OpenApiGenerationTest.java     # Property tests for OpenAPI spec generation
 ```
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **PureRestfulBackendRecord**: Core domain record for Pure Restful Backend scenarios.
+- **PureRestfulBackendProcess**: Process context handling lifecycle transitions.
+- **PureRestfulBackendAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **PureRestfulBackendRecord** 1:N **PureRestfulBackendProcess** (lifecycle orchestration).
+- **PureRestfulBackendProcess** 1:N **PureRestfulBackendAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

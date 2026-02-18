@@ -35,3 +35,25 @@ kse_version: 3.0.2
 - `docs/scene.yaml`
 - `docs/scene-package.json`
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **PopcommerceSuiteClosureRecord**: Core domain record for Popcommerce Suite Closure scenarios.
+- **PopcommerceSuiteClosureProcess**: Process context handling lifecycle transitions.
+- **PopcommerceSuiteClosureAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **PopcommerceSuiteClosureRecord** 1:N **PopcommerceSuiteClosureProcess** (lifecycle orchestration).
+- **PopcommerceSuiteClosureProcess** 1:N **PopcommerceSuiteClosureAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

@@ -39,3 +39,25 @@ kse_version: 3.0.2
 
 - 发现 `Partial` 回退时升级为 P0
 - 以最小可回归批次执行，避免大批次混合变更
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **DomainDepthRegressionGuardRecord**: Core domain record for Domain Depth Regression Guard scenarios.
+- **DomainDepthRegressionGuardProcess**: Process context handling lifecycle transitions.
+- **DomainDepthRegressionGuardAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **DomainDepthRegressionGuardRecord** 1:N **DomainDepthRegressionGuardProcess** (lifecycle orchestration).
+- **DomainDepthRegressionGuardProcess** 1:N **DomainDepthRegressionGuardAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

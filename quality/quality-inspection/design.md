@@ -176,3 +176,25 @@ router/index.js 变更：
 | `frontend/src/renderer/App.vue` | 修改 |
 | `frontend/src/renderer/router/index.js` | 修改 |
 | `frontend/src/renderer/utils/icons.js` | 修改（可选，新增图标） |
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **QualityInspectionRecord**: Core domain record for Quality Inspection scenarios.
+- **QualityInspectionProcess**: Process context handling lifecycle transitions.
+- **QualityInspectionAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **QualityInspectionRecord** 1:N **QualityInspectionProcess** (lifecycle orchestration).
+- **QualityInspectionProcess** 1:N **QualityInspectionAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

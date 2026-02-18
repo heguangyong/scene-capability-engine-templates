@@ -52,3 +52,25 @@ kse_version: 3.0.2
 1. 抽样核对 20+ 条清单记录，确认分类准确。
 2. 对高风险项进行人工复核，确保调用链可解释。
 3. 用同一脚本重复执行，确认结果稳定。
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **GroovyUsageDeepAnalysisRecord**: Core domain record for Groovy Usage Deep Analysis scenarios.
+- **GroovyUsageDeepAnalysisProcess**: Process context handling lifecycle transitions.
+- **GroovyUsageDeepAnalysisAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **GroovyUsageDeepAnalysisRecord** 1:N **GroovyUsageDeepAnalysisProcess** (lifecycle orchestration).
+- **GroovyUsageDeepAnalysisProcess** 1:N **GroovyUsageDeepAnalysisAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

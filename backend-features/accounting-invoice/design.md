@@ -91,3 +91,25 @@ new InvoiceController(invoiceService).register(router);
 - ContextPanel 注册 InvoicePanel
 - router/index.js 添加 /invoice, /invoice/:invoiceId 路由
 - icons.js 导入 Receipt 图标
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **AccountingInvoiceRecord**: Core domain record for Accounting Invoice scenarios.
+- **AccountingInvoiceProcess**: Process context handling lifecycle transitions.
+- **AccountingInvoiceAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **AccountingInvoiceRecord** 1:N **AccountingInvoiceProcess** (lifecycle orchestration).
+- **AccountingInvoiceProcess** 1:N **AccountingInvoiceAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

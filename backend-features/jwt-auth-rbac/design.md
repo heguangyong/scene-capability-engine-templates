@@ -386,3 +386,25 @@ record PermissionEntry(String method, String pathPattern, String permission) {}
 - JWT 相关测试直接调用 `JwtUtil` 静态方法，无需 Moqui 上下文
 - RBAC 权限查询测试需要 mock `ExecutionContextFactory` 和实体查询
 - AuthService 测试需要 mock Moqui `UserAccount` 实体操作
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **JwtAuthRbacRecord**: Core domain record for Jwt Auth Rbac scenarios.
+- **JwtAuthRbacProcess**: Process context handling lifecycle transitions.
+- **JwtAuthRbacAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **JwtAuthRbacRecord** 1:N **JwtAuthRbacProcess** (lifecycle orchestration).
+- **JwtAuthRbacProcess** 1:N **JwtAuthRbacAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

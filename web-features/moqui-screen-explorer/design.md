@@ -405,3 +405,25 @@ frontend/src/renderer/
     ├── FormInspector.spec.ts         # 表单检查器测试
     └── WidgetTreeViewer.spec.ts      # Widget 树测试
 ```
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **MoquiScreenExplorerRecord**: Core domain record for Moqui Screen Explorer scenarios.
+- **MoquiScreenExplorerProcess**: Process context handling lifecycle transitions.
+- **MoquiScreenExplorerAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **MoquiScreenExplorerRecord** 1:N **MoquiScreenExplorerProcess** (lifecycle orchestration).
+- **MoquiScreenExplorerProcess** 1:N **MoquiScreenExplorerAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

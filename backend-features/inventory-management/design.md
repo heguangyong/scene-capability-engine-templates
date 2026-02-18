@@ -230,3 +230,25 @@ AstReserved — 已预留
 ### 7.2 前端测试
 - **框架**: Vitest + fast-check
 - **属性测试**: 验证 Property 7
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **InventoryManagementRecord**: Core domain record for Inventory Management scenarios.
+- **InventoryManagementProcess**: Process context handling lifecycle transitions.
+- **InventoryManagementAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **InventoryManagementRecord** 1:N **InventoryManagementProcess** (lifecycle orchestration).
+- **InventoryManagementProcess** 1:N **InventoryManagementAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

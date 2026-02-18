@@ -26,3 +26,25 @@ kse_version: 3.0.2
 - 治理 runbook
 - 诊断与报告模板
 - 周期性检查机制
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **PlatformOpsGovernanceClosureRecord**: Core domain record for Platform Ops Governance Closure scenarios.
+- **PlatformOpsGovernanceClosureProcess**: Process context handling lifecycle transitions.
+- **PlatformOpsGovernanceClosureAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **PlatformOpsGovernanceClosureRecord** 1:N **PlatformOpsGovernanceClosureProcess** (lifecycle orchestration).
+- **PlatformOpsGovernanceClosureProcess** 1:N **PlatformOpsGovernanceClosureAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

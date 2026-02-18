@@ -33,3 +33,25 @@ kse_version: 3.0.2
 1. 合法迁移全部通过，不合法迁移全部拦截。
 2. 迁移失败时状态不应部分写入。
 3. 审计链路可完整追溯“触发-执行-结果”。
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **KiroStateTransitionDiagnosisRecord**: Core domain record for Kiro State Transition Diagnosis scenarios.
+- **KiroStateTransitionDiagnosisProcess**: Process context handling lifecycle transitions.
+- **KiroStateTransitionDiagnosisAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **KiroStateTransitionDiagnosisRecord** 1:N **KiroStateTransitionDiagnosisProcess** (lifecycle orchestration).
+- **KiroStateTransitionDiagnosisProcess** 1:N **KiroStateTransitionDiagnosisAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

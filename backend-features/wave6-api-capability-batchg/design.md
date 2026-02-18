@@ -51,3 +51,25 @@ kse_version: 3.0.2
 - 全量新增，不破坏既有接口。
 - 标签来源沿用 `inferTag(path)`，不引入额外数据源。
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **Wave6ApiCapabilityBatchgRecord**: Core domain record for Wave6 Api Capability Batchg scenarios.
+- **Wave6ApiCapabilityBatchgProcess**: Process context handling lifecycle transitions.
+- **Wave6ApiCapabilityBatchgAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **Wave6ApiCapabilityBatchgRecord** 1:N **Wave6ApiCapabilityBatchgProcess** (lifecycle orchestration).
+- **Wave6ApiCapabilityBatchgProcess** 1:N **Wave6ApiCapabilityBatchgAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

@@ -497,3 +497,25 @@ if __name__ == '__main__':
 **版本**: v1.0  
 **状态**: Active  
 **预计完成**: 2026-01-31
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **RequirementMappingRecord**: Core domain record for Requirement Mapping scenarios.
+- **RequirementMappingProcess**: Process context handling lifecycle transitions.
+- **RequirementMappingAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **RequirementMappingRecord** 1:N **RequirementMappingProcess** (lifecycle orchestration).
+- **RequirementMappingProcess** 1:N **RequirementMappingAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

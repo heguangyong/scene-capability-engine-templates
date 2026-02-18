@@ -36,3 +36,25 @@ kse_version: 3.0.2
 - `npm run build`（frontend）
 - 手动触发离线/限流路径验证 SceneBanner 文案
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **NetworkExceptionSemanticsUnificationRecord**: Core domain record for Network Exception Semantics Unification scenarios.
+- **NetworkExceptionSemanticsUnificationProcess**: Process context handling lifecycle transitions.
+- **NetworkExceptionSemanticsUnificationAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **NetworkExceptionSemanticsUnificationRecord** 1:N **NetworkExceptionSemanticsUnificationProcess** (lifecycle orchestration).
+- **NetworkExceptionSemanticsUnificationProcess** 1:N **NetworkExceptionSemanticsUnificationAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

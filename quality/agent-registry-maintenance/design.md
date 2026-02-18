@@ -22,3 +22,25 @@ kse_version: 3.0.2
 - 默认 dry-run
 - apply 前自动备份 registry 到 `.kiro/config/backups/`
 - 回写 JSON 采用 UTF-8 无 BOM
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **AgentRegistryMaintenanceRecord**: Core domain record for Agent Registry Maintenance scenarios.
+- **AgentRegistryMaintenanceProcess**: Process context handling lifecycle transitions.
+- **AgentRegistryMaintenanceAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **AgentRegistryMaintenanceRecord** 1:N **AgentRegistryMaintenanceProcess** (lifecycle orchestration).
+- **AgentRegistryMaintenanceProcess** 1:N **AgentRegistryMaintenanceAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

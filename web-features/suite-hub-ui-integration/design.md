@@ -37,3 +37,25 @@ kse_version: 3.0.2
 2. 模块跳转链路可用  
 3. 构建与治理检查通过
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **SuiteHubUiIntegrationRecord**: Core domain record for Suite Hub Ui Integration scenarios.
+- **SuiteHubUiIntegrationProcess**: Process context handling lifecycle transitions.
+- **SuiteHubUiIntegrationAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **SuiteHubUiIntegrationRecord** 1:N **SuiteHubUiIntegrationProcess** (lifecycle orchestration).
+- **SuiteHubUiIntegrationProcess** 1:N **SuiteHubUiIntegrationAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

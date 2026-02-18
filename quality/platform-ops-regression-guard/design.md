@@ -35,3 +35,25 @@ kse_version: 3.0.2
 - 部署失败：立即触发回滚流程
 - 监控异常：降并发并进入诊断
 - 文档不合规：阻断批次收口，先修复治理
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **PlatformOpsRegressionGuardRecord**: Core domain record for Platform Ops Regression Guard scenarios.
+- **PlatformOpsRegressionGuardProcess**: Process context handling lifecycle transitions.
+- **PlatformOpsRegressionGuardAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **PlatformOpsRegressionGuardRecord** 1:N **PlatformOpsRegressionGuardProcess** (lifecycle orchestration).
+- **PlatformOpsRegressionGuardProcess** 1:N **PlatformOpsRegressionGuardAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

@@ -69,3 +69,25 @@ kse_version: 3.0.2
 3. `status/doctor` 通过  
 4. 上下文与 handoff 清单完成回填
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **MoquiThreeSuiteCapabilityClosureRecord**: Core domain record for Moqui Three Suite Capability Closure scenarios.
+- **MoquiThreeSuiteCapabilityClosureProcess**: Process context handling lifecycle transitions.
+- **MoquiThreeSuiteCapabilityClosureAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **MoquiThreeSuiteCapabilityClosureRecord** 1:N **MoquiThreeSuiteCapabilityClosureProcess** (lifecycle orchestration).
+- **MoquiThreeSuiteCapabilityClosureProcess** 1:N **MoquiThreeSuiteCapabilityClosureAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

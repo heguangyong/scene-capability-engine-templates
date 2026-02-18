@@ -48,3 +48,25 @@ kse_version: 3.0.2
 1. `kse doctor --docs` 仍为 `Compliant`。  
 2. 目标 Spec 任务勾选与实际产物一致。  
 3. `CURRENT_CONTEXT.md` 已更新到当前阶段。
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **BacklogClosureProgramRecord**: Core domain record for Backlog Closure Program scenarios.
+- **BacklogClosureProgramProcess**: Process context handling lifecycle transitions.
+- **BacklogClosureProgramAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **BacklogClosureProgramRecord** 1:N **BacklogClosureProgramProcess** (lifecycle orchestration).
+- **BacklogClosureProgramProcess** 1:N **BacklogClosureProgramAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

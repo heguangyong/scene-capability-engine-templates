@@ -58,3 +58,25 @@ kse_version: 3.0.2
 - `npx kse doctor --docs`
 - `npx kse scene package-publish-batch --from-331 --dry-run --ontology-min-average-score 70 --ontology-min-valid-rate 100 --json`
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **MoquiSuiteFinalAlignmentProgramRecord**: Core domain record for Moqui Suite Final Alignment Program scenarios.
+- **MoquiSuiteFinalAlignmentProgramProcess**: Process context handling lifecycle transitions.
+- **MoquiSuiteFinalAlignmentProgramAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **MoquiSuiteFinalAlignmentProgramRecord** 1:N **MoquiSuiteFinalAlignmentProgramProcess** (lifecycle orchestration).
+- **MoquiSuiteFinalAlignmentProgramProcess** 1:N **MoquiSuiteFinalAlignmentProgramAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

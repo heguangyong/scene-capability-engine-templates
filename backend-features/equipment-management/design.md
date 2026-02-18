@@ -245,3 +245,25 @@ export const ORDER_STATUS_LABELS: Record<OrderStatus, string> = {
 | `frontend/src/renderer/App.vue` | 修改 |
 | `frontend/src/renderer/router/index.js` | 修改 |
 | `frontend/src/renderer/utils/icons.js` | 修改（可选） |
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **EquipmentManagementRecord**: Core domain record for Equipment Management scenarios.
+- **EquipmentManagementProcess**: Process context handling lifecycle transitions.
+- **EquipmentManagementAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **EquipmentManagementRecord** 1:N **EquipmentManagementProcess** (lifecycle orchestration).
+- **EquipmentManagementProcess** 1:N **EquipmentManagementAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

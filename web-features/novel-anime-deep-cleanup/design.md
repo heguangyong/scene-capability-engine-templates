@@ -144,3 +144,25 @@ No property-based tests are defined for this spec.
 3. Run TypeScript compilation check via diagnostics — no type errors
 
 **Property-Based Tests:** None. This is a cleanup spec with no new logic to validate via PBT.
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **NovelAnimeDeepCleanupRecord**: Core domain record for Novel Anime Deep Cleanup scenarios.
+- **NovelAnimeDeepCleanupProcess**: Process context handling lifecycle transitions.
+- **NovelAnimeDeepCleanupAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **NovelAnimeDeepCleanupRecord** 1:N **NovelAnimeDeepCleanupProcess** (lifecycle orchestration).
+- **NovelAnimeDeepCleanupProcess** 1:N **NovelAnimeDeepCleanupAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

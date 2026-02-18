@@ -24,3 +24,25 @@ kse_version: 3.0.2
 - PM 计划能驱动维护工单
 - 租赁流程具备基础闭环
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **EquipmentLifecycleEnhancementRecord**: Core domain record for Equipment Lifecycle Enhancement scenarios.
+- **EquipmentLifecycleEnhancementProcess**: Process context handling lifecycle transitions.
+- **EquipmentLifecycleEnhancementAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **EquipmentLifecycleEnhancementRecord** 1:N **EquipmentLifecycleEnhancementProcess** (lifecycle orchestration).
+- **EquipmentLifecycleEnhancementProcess** 1:N **EquipmentLifecycleEnhancementAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

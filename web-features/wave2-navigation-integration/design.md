@@ -119,3 +119,25 @@ const InventoryPanel = defineAsyncComponent(() => import('./InventoryPanel.vue')
 编译验证为核心质量保证手段：
 - 前端：`npm run build`
 - 后端：`mvn clean package`
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **Wave2NavigationIntegrationRecord**: Core domain record for Wave2 Navigation Integration scenarios.
+- **Wave2NavigationIntegrationProcess**: Process context handling lifecycle transitions.
+- **Wave2NavigationIntegrationAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **Wave2NavigationIntegrationRecord** 1:N **Wave2NavigationIntegrationProcess** (lifecycle orchestration).
+- **Wave2NavigationIntegrationProcess** 1:N **Wave2NavigationIntegrationAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

@@ -51,3 +51,25 @@ kse_version: 3.0.2
 - 新增能力，不影响既有路径。
 - method 大小写统一处理，减少调用歧义。
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **Wave6ApiCapabilityBatchhRecord**: Core domain record for Wave6 Api Capability Batchh scenarios.
+- **Wave6ApiCapabilityBatchhProcess**: Process context handling lifecycle transitions.
+- **Wave6ApiCapabilityBatchhAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **Wave6ApiCapabilityBatchhRecord** 1:N **Wave6ApiCapabilityBatchhProcess** (lifecycle orchestration).
+- **Wave6ApiCapabilityBatchhProcess** 1:N **Wave6ApiCapabilityBatchhAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

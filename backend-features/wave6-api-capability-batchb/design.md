@@ -54,3 +54,25 @@ kse_version: 3.0.2
 - 保留 `/api/v1` 的原平铺字段（`docs/openapi/services/entities...`）避免客户端破坏性升级。
 - `/api/v1/routes` 新参数为可选，默认行为与现状一致。
 - `componentMatrix` 基于已有目录返回结构做只读聚合，不变更底层目录服务契约。
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **Wave6ApiCapabilityBatchbRecord**: Core domain record for Wave6 Api Capability Batchb scenarios.
+- **Wave6ApiCapabilityBatchbProcess**: Process context handling lifecycle transitions.
+- **Wave6ApiCapabilityBatchbAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **Wave6ApiCapabilityBatchbRecord** 1:N **Wave6ApiCapabilityBatchbProcess** (lifecycle orchestration).
+- **Wave6ApiCapabilityBatchbProcess** 1:N **Wave6ApiCapabilityBatchbAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

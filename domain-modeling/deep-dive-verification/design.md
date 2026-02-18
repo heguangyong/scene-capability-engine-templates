@@ -962,3 +962,16 @@ def research_all_parallel(self, max_workers=4) -> List[ResearchResult]:
 **项目**: 331-poc  
 **日期**: {{DATE}}  
 **说明**: 深度调研验证设计文档，基于 requirements-first workflow
+
+
+## Ontology Model (Backfilled)
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

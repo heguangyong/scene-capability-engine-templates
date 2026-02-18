@@ -35,3 +35,25 @@ kse_version: 3.0.2
 - `docs/scene.yaml`
 - `docs/scene-package.json`
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **HivemindSuiteClosureRecord**: Core domain record for Hivemind Suite Closure scenarios.
+- **HivemindSuiteClosureProcess**: Process context handling lifecycle transitions.
+- **HivemindSuiteClosureAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **HivemindSuiteClosureRecord** 1:N **HivemindSuiteClosureProcess** (lifecycle orchestration).
+- **HivemindSuiteClosureProcess** 1:N **HivemindSuiteClosureAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

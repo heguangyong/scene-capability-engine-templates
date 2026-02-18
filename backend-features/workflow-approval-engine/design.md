@@ -24,3 +24,25 @@ kse_version: 3.0.2
 - 多业务模块可复用同一引擎
 - 审批日志可检索可追溯
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **WorkflowApprovalEngineRecord**: Core domain record for Workflow Approval Engine scenarios.
+- **WorkflowApprovalEngineProcess**: Process context handling lifecycle transitions.
+- **WorkflowApprovalEngineAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **WorkflowApprovalEngineRecord** 1:N **WorkflowApprovalEngineProcess** (lifecycle orchestration).
+- **WorkflowApprovalEngineProcess** 1:N **WorkflowApprovalEngineAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

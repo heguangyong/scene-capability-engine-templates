@@ -738,3 +738,25 @@ void jsonResponseFormatConsistency(@ForAll @From("apiResponses") Map<String, Obj
 | P19: Sanitization | Property | Generate strings with injection patterns, verify sanitized |
 | P20: Account Lockout | Property | Generate N failed attempts, verify lockout at threshold |
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **RestApiLayerRecord**: Core domain record for Rest Api Layer scenarios.
+- **RestApiLayerProcess**: Process context handling lifecycle transitions.
+- **RestApiLayerAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **RestApiLayerRecord** 1:N **RestApiLayerProcess** (lifecycle orchestration).
+- **RestApiLayerProcess** 1:N **RestApiLayerAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

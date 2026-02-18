@@ -168,3 +168,25 @@ const ShipmentPanel = defineAsyncComponent(() => import('./ShipmentPanel.vue'));
 - 验证的是静态配置的完整性，不是运行时行为
 
 建议在前端编译验证通过后，通过人工检查或简单的配置完整性脚本验证 3 个属性。
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **MultiModuleNavigationRecord**: Core domain record for Multi Module Navigation scenarios.
+- **MultiModuleNavigationProcess**: Process context handling lifecycle transitions.
+- **MultiModuleNavigationAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **MultiModuleNavigationRecord** 1:N **MultiModuleNavigationProcess** (lifecycle orchestration).
+- **MultiModuleNavigationProcess** 1:N **MultiModuleNavigationAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

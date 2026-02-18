@@ -239,3 +239,25 @@ class RoutingApiService {
 ### 7.2 前端测试
 - **框架**: Vitest + fast-check
 - **属性测试**: 验证 Property 8
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **RoutingManagementRecord**: Core domain record for Routing Management scenarios.
+- **RoutingManagementProcess**: Process context handling lifecycle transitions.
+- **RoutingManagementAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **RoutingManagementRecord** 1:N **RoutingManagementProcess** (lifecycle orchestration).
+- **RoutingManagementProcess** 1:N **RoutingManagementAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

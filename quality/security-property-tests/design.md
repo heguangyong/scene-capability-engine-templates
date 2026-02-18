@@ -236,3 +236,25 @@ P6 验证错误消息一致性。由于 AuthService 依赖 Moqui 上下文，直
 
 - 每个批次完成后运行 `mvn test` 确认全部通过
 - 最终确认总测试数从 190 增长到预期数量
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **SecurityPropertyTestsRecord**: Core domain record for Security Property Tests scenarios.
+- **SecurityPropertyTestsProcess**: Process context handling lifecycle transitions.
+- **SecurityPropertyTestsAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **SecurityPropertyTestsRecord** 1:N **SecurityPropertyTestsProcess** (lifecycle orchestration).
+- **SecurityPropertyTestsProcess** 1:N **SecurityPropertyTestsAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

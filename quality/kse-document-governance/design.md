@@ -55,3 +55,25 @@ kse_version: 3.0.2
 2. 执行 `kse status`，确认文档合规状态改善。
 3. 如命令可用，执行 `kse docs validate --all` 作为补充检查。
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **KseDocumentGovernanceRecord**: Core domain record for Kse Document Governance scenarios.
+- **KseDocumentGovernanceProcess**: Process context handling lifecycle transitions.
+- **KseDocumentGovernanceAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **KseDocumentGovernanceRecord** 1:N **KseDocumentGovernanceProcess** (lifecycle orchestration).
+- **KseDocumentGovernanceProcess** 1:N **KseDocumentGovernanceAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

@@ -114,3 +114,25 @@ kse_version: 3.0.2
 3. 模板产物可被 `kse templates` 发现和复用
 4. `kse status --verbose`、`kse doctor --docs` 均通过
 5. `CURRENT_CONTEXT.md` 完整记录本轮结果与下一批计划
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **MoquiFullCapabilityClosureProgramRecord**: Core domain record for Moqui Full Capability Closure Program scenarios.
+- **MoquiFullCapabilityClosureProgramProcess**: Process context handling lifecycle transitions.
+- **MoquiFullCapabilityClosureProgramAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **MoquiFullCapabilityClosureProgramRecord** 1:N **MoquiFullCapabilityClosureProgramProcess** (lifecycle orchestration).
+- **MoquiFullCapabilityClosureProgramProcess** 1:N **MoquiFullCapabilityClosureProgramAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

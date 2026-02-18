@@ -588,3 +588,25 @@ def test_project_extensibility(structure, module):
 **设计版本**: v1.0  
 **创建日期**: {{DATE}}  
 **设计者**: Kiro AI Assistant
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **ProjectStructureDesignRecord**: Core domain record for Project Structure Design scenarios.
+- **ProjectStructureDesignProcess**: Process context handling lifecycle transitions.
+- **ProjectStructureDesignAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **ProjectStructureDesignRecord** 1:N **ProjectStructureDesignProcess** (lifecycle orchestration).
+- **ProjectStructureDesignProcess** 1:N **ProjectStructureDesignAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

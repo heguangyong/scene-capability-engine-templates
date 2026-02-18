@@ -154,3 +154,25 @@ const MODULE_LABELS: Record<string, string> = {
 | `frontend/src/renderer/stores/search.ts` | 新增 |
 | `frontend/src/renderer/components/dialogs/GlobalSearchDialog.vue` | 新增 |
 | `frontend/src/renderer/App.vue` | 修改（注册快捷键 + 引入对话框） |
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **GlobalSearchRecord**: Core domain record for Global Search scenarios.
+- **GlobalSearchProcess**: Process context handling lifecycle transitions.
+- **GlobalSearchAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **GlobalSearchRecord** 1:N **GlobalSearchProcess** (lifecycle orchestration).
+- **GlobalSearchProcess** 1:N **GlobalSearchAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

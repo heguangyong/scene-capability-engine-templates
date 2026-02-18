@@ -35,3 +35,25 @@ kse_version: 3.0.2
 - `powershell -File scripts/kse-final-sync.ps1 ...`
 - `npx kse templates create-from-spec --spec 67-xx --no-interactive`
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **SceneEvidenceGovernanceClosureRecord**: Core domain record for Scene Evidence Governance Closure scenarios.
+- **SceneEvidenceGovernanceClosureProcess**: Process context handling lifecycle transitions.
+- **SceneEvidenceGovernanceClosureAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **SceneEvidenceGovernanceClosureRecord** 1:N **SceneEvidenceGovernanceClosureProcess** (lifecycle orchestration).
+- **SceneEvidenceGovernanceClosureProcess** 1:N **SceneEvidenceGovernanceClosureAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

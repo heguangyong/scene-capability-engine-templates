@@ -406,3 +406,25 @@ void configResolutionPriority(@ForAll String key, @ForAll String fileValue, @For
 3. `java -jar target/app.jar` — 服务器启动成功
 4. HTTP GET `/api/v1/docs` — 返回 200
 5. 所有已注册 API 端点 — 返回非 404
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **ArchitectureRestructuringRecord**: Core domain record for Architecture Restructuring scenarios.
+- **ArchitectureRestructuringProcess**: Process context handling lifecycle transitions.
+- **ArchitectureRestructuringAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **ArchitectureRestructuringRecord** 1:N **ArchitectureRestructuringProcess** (lifecycle orchestration).
+- **ArchitectureRestructuringProcess** 1:N **ArchitectureRestructuringAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

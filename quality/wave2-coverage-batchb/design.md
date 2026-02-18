@@ -46,3 +46,25 @@ kse_version: 3.0.2
 2. 运行 `mvn -q -pl app -am test`。
 3. 运行 `scripts/quality-baseline.ps1`（SpecSlug=`{{SPEC_NAME}}`）并输出 delta 报告。
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **Wave2CoverageBatchbRecord**: Core domain record for Wave2 Coverage Batchb scenarios.
+- **Wave2CoverageBatchbProcess**: Process context handling lifecycle transitions.
+- **Wave2CoverageBatchbAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **Wave2CoverageBatchbRecord** 1:N **Wave2CoverageBatchbProcess** (lifecycle orchestration).
+- **Wave2CoverageBatchbProcess** 1:N **Wave2CoverageBatchbAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

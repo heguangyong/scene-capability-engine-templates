@@ -170,3 +170,25 @@ Authorization: Bearer <token>
 **Version**: 1.0.0  
 **Created**: {{DATE}}  
 **Author**: {{AUTHOR}}
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **RestApiRecord**: Core domain record for Rest Api scenarios.
+- **RestApiProcess**: Process context handling lifecycle transitions.
+- **RestApiAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **RestApiRecord** 1:N **RestApiProcess** (lifecycle orchestration).
+- **RestApiProcess** 1:N **RestApiAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

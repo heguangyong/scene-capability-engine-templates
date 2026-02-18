@@ -585,3 +585,25 @@ frontend/src/renderer/services/__tests__/
 ├── novelApi.migration.test.ts # Integration tests for novel API migration
 └── auth.store.test.ts         # Integration tests for auth store
 ```
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **FrontendBackendSeparationRecord**: Core domain record for Frontend Backend Separation scenarios.
+- **FrontendBackendSeparationProcess**: Process context handling lifecycle transitions.
+- **FrontendBackendSeparationAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **FrontendBackendSeparationRecord** 1:N **FrontendBackendSeparationProcess** (lifecycle orchestration).
+- **FrontendBackendSeparationProcess** 1:N **FrontendBackendSeparationAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

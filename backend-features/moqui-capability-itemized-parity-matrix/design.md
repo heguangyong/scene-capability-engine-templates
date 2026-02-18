@@ -33,3 +33,25 @@ kse_version: 3.0.2
 - 三态判定覆盖率 100%
 - 证据路径可追溯
 - 缺口可被后续 spec 消化
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **MoquiCapabilityItemizedParityMatrixRecord**: Core domain record for Moqui Capability Itemized Parity Matrix scenarios.
+- **MoquiCapabilityItemizedParityMatrixProcess**: Process context handling lifecycle transitions.
+- **MoquiCapabilityItemizedParityMatrixAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **MoquiCapabilityItemizedParityMatrixRecord** 1:N **MoquiCapabilityItemizedParityMatrixProcess** (lifecycle orchestration).
+- **MoquiCapabilityItemizedParityMatrixProcess** 1:N **MoquiCapabilityItemizedParityMatrixAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

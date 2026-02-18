@@ -185,3 +185,25 @@ export const CHANGE_TYPE_LABELS: Record<ChangeType, string> = {
 | `frontend/src/renderer/components/panels/ContextPanel.vue` | 修改 |
 | `frontend/src/renderer/App.vue` | 修改 |
 | `frontend/src/renderer/router/index.js` | 修改 |
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **EngineeringChangeRecord**: Core domain record for Engineering Change scenarios.
+- **EngineeringChangeProcess**: Process context handling lifecycle transitions.
+- **EngineeringChangeAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **EngineeringChangeRecord** 1:N **EngineeringChangeProcess** (lifecycle orchestration).
+- **EngineeringChangeProcess** 1:N **EngineeringChangeAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

@@ -964,3 +964,25 @@ Each phase has a rollback plan:
    - Mitigation: No data migration needed (same database), comprehensive testing
    - Contingency: Database backups before each phase
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **ArchitectureDesignRecord**: Core domain record for Architecture Design scenarios.
+- **ArchitectureDesignProcess**: Process context handling lifecycle transitions.
+- **ArchitectureDesignAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **ArchitectureDesignRecord** 1:N **ArchitectureDesignProcess** (lifecycle orchestration).
+- **ArchitectureDesignProcess** 1:N **ArchitectureDesignAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

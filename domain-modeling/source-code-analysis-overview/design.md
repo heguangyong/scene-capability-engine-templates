@@ -319,3 +319,25 @@ scripts/
 **状态**: Active  
 **下一步**: 执行 02-02 子 Spec
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **SourceCodeAnalysisOverviewRecord**: Core domain record for Source Code Analysis Overview scenarios.
+- **SourceCodeAnalysisOverviewProcess**: Process context handling lifecycle transitions.
+- **SourceCodeAnalysisOverviewAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **SourceCodeAnalysisOverviewRecord** 1:N **SourceCodeAnalysisOverviewProcess** (lifecycle orchestration).
+- **SourceCodeAnalysisOverviewProcess** 1:N **SourceCodeAnalysisOverviewAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

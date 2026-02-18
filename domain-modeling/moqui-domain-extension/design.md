@@ -325,3 +325,20 @@ backend/runtime/component/{{COMPONENT_NAME}}/
 - **Framework**: JUnit 5 + jqwik (property-based testing)
 
 **Validates: Requirements 1-5**
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **MoquiDomainExtensionRecord**: Core domain record for Moqui Domain Extension scenarios.
+- **MoquiDomainExtensionProcess**: Process context handling lifecycle transitions.
+- **MoquiDomainExtensionAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **MoquiDomainExtensionRecord** 1:N **MoquiDomainExtensionProcess** (lifecycle orchestration).
+- **MoquiDomainExtensionProcess** 1:N **MoquiDomainExtensionAuditEvent** (traceability and compliance).
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

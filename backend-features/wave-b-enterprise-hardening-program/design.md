@@ -105,3 +105,25 @@ kse_version: 3.0.2
 3. scene/collaboration 完成且可校验
 4. CURRENT_CONTEXT 更新
 5. `kse status` 与 `kse docs validate --all` 通过
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **WaveBEnterpriseHardeningProgramRecord**: Core domain record for Wave B Enterprise Hardening Program scenarios.
+- **WaveBEnterpriseHardeningProgramProcess**: Process context handling lifecycle transitions.
+- **WaveBEnterpriseHardeningProgramAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **WaveBEnterpriseHardeningProgramRecord** 1:N **WaveBEnterpriseHardeningProgramProcess** (lifecycle orchestration).
+- **WaveBEnterpriseHardeningProgramProcess** 1:N **WaveBEnterpriseHardeningProgramAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

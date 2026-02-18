@@ -272,3 +272,25 @@ backend/app/src/test/java/org/moqui/rest/
 │   ├── PayloadSizeE2eTest.java       — 请求体大小验证 (Req 10)
 │   └── E2ePropertyTest.java          — Property-based 测试 (Properties 1-6)
 ```
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **E2eIntegrationTestsRecord**: Core domain record for E2e Integration Tests scenarios.
+- **E2eIntegrationTestsProcess**: Process context handling lifecycle transitions.
+- **E2eIntegrationTestsAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **E2eIntegrationTestsRecord** 1:N **E2eIntegrationTestsProcess** (lifecycle orchestration).
+- **E2eIntegrationTestsProcess** 1:N **E2eIntegrationTestsAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

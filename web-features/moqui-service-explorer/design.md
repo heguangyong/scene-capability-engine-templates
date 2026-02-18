@@ -330,3 +330,25 @@ stateDiagram-v2
 | 属性测试 | Property 1-7 (通用正确性) | fast-check + Vitest |
 | 单元测试 | 具体示例、边界情况、错误条件 | Vitest |
 | 组件测试 | UI 渲染、交互、状态绑定 | @vue/test-utils |
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **MoquiServiceExplorerRecord**: Core domain record for Moqui Service Explorer scenarios.
+- **MoquiServiceExplorerProcess**: Process context handling lifecycle transitions.
+- **MoquiServiceExplorerAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **MoquiServiceExplorerRecord** 1:N **MoquiServiceExplorerProcess** (lifecycle orchestration).
+- **MoquiServiceExplorerProcess** 1:N **MoquiServiceExplorerAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

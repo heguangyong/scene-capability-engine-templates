@@ -34,3 +34,25 @@ kse_version: 3.0.2
 - 不对每个业务页逐一重写表单，优先以“全局场景卡片 + 菜单场景摘要”快速建立场景可读性基线。
 - 网络重试仅对幂等请求开启，避免写操作重复提交。
 - 通过统一配置驱动场景描述，降低后续扩展成本。
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **SceneDrivenUiHardeningRecord**: Core domain record for Scene Driven Ui Hardening scenarios.
+- **SceneDrivenUiHardeningProcess**: Process context handling lifecycle transitions.
+- **SceneDrivenUiHardeningAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **SceneDrivenUiHardeningRecord** 1:N **SceneDrivenUiHardeningProcess** (lifecycle orchestration).
+- **SceneDrivenUiHardeningProcess** 1:N **SceneDrivenUiHardeningAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

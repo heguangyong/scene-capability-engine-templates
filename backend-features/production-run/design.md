@@ -182,3 +182,25 @@ export const VALID_TRANSITIONS: Record<string, string[]> = {
 2. 更新/删除非 Created 状态的工单 → 400 Bad Request + 错误消息
 3. 无效状态转换 → 400 Bad Request + 允许的目标状态列表
 4. 工单不存在 → 404 Not Found
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **ProductionRunRecord**: Core domain record for Production Run scenarios.
+- **ProductionRunProcess**: Process context handling lifecycle transitions.
+- **ProductionRunAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **ProductionRunRecord** 1:N **ProductionRunProcess** (lifecycle orchestration).
+- **ProductionRunProcess** 1:N **ProductionRunAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

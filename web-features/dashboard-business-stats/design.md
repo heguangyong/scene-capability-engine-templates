@@ -102,3 +102,25 @@ const businessStatCards = computed(() => [
 1. 统计 API 失败 → 显示错误提示 + 重试按钮，不影响其他区域
 2. 部分模块统计失败 → 对应卡片显示 "—"，其他正常显示
 3. 未登录 → 不显示业务统计区域（与现有行为一致）
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **DashboardBusinessStatsRecord**: Core domain record for Dashboard Business Stats scenarios.
+- **DashboardBusinessStatsProcess**: Process context handling lifecycle transitions.
+- **DashboardBusinessStatsAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **DashboardBusinessStatsRecord** 1:N **DashboardBusinessStatsProcess** (lifecycle orchestration).
+- **DashboardBusinessStatsProcess** 1:N **DashboardBusinessStatsAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

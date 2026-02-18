@@ -171,3 +171,25 @@ const quickNavCards = [
 - Unit tests 覆盖具体场景：初始状态、加载中、加载成功、加载失败、点击导航、折叠展开
 - Property tests 覆盖数据逻辑：store getters 对任意 catalog 数据的正确性
 - 两者互补：unit tests 验证具体行为，property tests 验证通用正确性
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **DashboardEnhancementRecord**: Core domain record for Dashboard Enhancement scenarios.
+- **DashboardEnhancementProcess**: Process context handling lifecycle transitions.
+- **DashboardEnhancementAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **DashboardEnhancementRecord** 1:N **DashboardEnhancementProcess** (lifecycle orchestration).
+- **DashboardEnhancementProcess** 1:N **DashboardEnhancementAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

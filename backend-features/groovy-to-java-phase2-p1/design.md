@@ -899,3 +899,20 @@ Migration is successful when:
 **Document Status**: ✅ Complete  
 **Next Step**: Create tasks.md for implementation plan
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **GroovyToJavaPhase2P1Record**: Core domain record for Groovy To Java Phase2 P1 scenarios.
+- **GroovyToJavaPhase2P1Process**: Process context handling lifecycle transitions.
+- **GroovyToJavaPhase2P1AuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **GroovyToJavaPhase2P1Record** 1:N **GroovyToJavaPhase2P1Process** (lifecycle orchestration).
+- **GroovyToJavaPhase2P1Process** 1:N **GroovyToJavaPhase2P1AuditEvent** (traceability and compliance).
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

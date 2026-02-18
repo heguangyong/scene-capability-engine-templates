@@ -45,3 +45,25 @@ kse_version: 3.0.2
 2. 执行 `mvn -q -pl app -am test`。
 3. 执行 `scripts/quality-baseline.ps1`（SpecSlug=`{{SPEC_NAME}}`）并生成增量报告。
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **Wave1CoverageBatchcRecord**: Core domain record for Wave1 Coverage Batchc scenarios.
+- **Wave1CoverageBatchcProcess**: Process context handling lifecycle transitions.
+- **Wave1CoverageBatchcAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **Wave1CoverageBatchcRecord** 1:N **Wave1CoverageBatchcProcess** (lifecycle orchestration).
+- **Wave1CoverageBatchcProcess** 1:N **Wave1CoverageBatchcAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

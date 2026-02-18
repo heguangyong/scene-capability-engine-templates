@@ -26,3 +26,25 @@ kse_version: 3.0.2
 
 - `npm run build`（frontend）
 - `/suite-hub` 依赖路径可见且可跳转
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **CrossSuiteDependencyRouteDrilldownRecord**: Core domain record for Cross Suite Dependency Route Drilldown scenarios.
+- **CrossSuiteDependencyRouteDrilldownProcess**: Process context handling lifecycle transitions.
+- **CrossSuiteDependencyRouteDrilldownAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **CrossSuiteDependencyRouteDrilldownRecord** 1:N **CrossSuiteDependencyRouteDrilldownProcess** (lifecycle orchestration).
+- **CrossSuiteDependencyRouteDrilldownProcess** 1:N **CrossSuiteDependencyRouteDrilldownAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

@@ -250,3 +250,25 @@ type NavId = 'dashboard' | 'settings';
 - `services/__tests__/apiDiscoveryService.test.ts`
 - `services/__tests__/entityService.test.ts`
 - `composables/useAppInit.spec.ts`
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **NovelAnimeCleanupRecord**: Core domain record for Novel Anime Cleanup scenarios.
+- **NovelAnimeCleanupProcess**: Process context handling lifecycle transitions.
+- **NovelAnimeCleanupAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **NovelAnimeCleanupRecord** 1:N **NovelAnimeCleanupProcess** (lifecycle orchestration).
+- **NovelAnimeCleanupProcess** 1:N **NovelAnimeCleanupAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

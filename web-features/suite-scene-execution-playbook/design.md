@@ -27,3 +27,25 @@ kse_version: 3.0.2
 
 - `npm run build`（frontend）
 - `/suite-hub` 可见执行钻取与步骤矩阵
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **SuiteSceneExecutionPlaybookRecord**: Core domain record for Suite Scene Execution Playbook scenarios.
+- **SuiteSceneExecutionPlaybookProcess**: Process context handling lifecycle transitions.
+- **SuiteSceneExecutionPlaybookAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **SuiteSceneExecutionPlaybookRecord** 1:N **SuiteSceneExecutionPlaybookProcess** (lifecycle orchestration).
+- **SuiteSceneExecutionPlaybookProcess** 1:N **SuiteSceneExecutionPlaybookAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

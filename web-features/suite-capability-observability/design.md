@@ -41,3 +41,25 @@ kse_version: 3.0.2
 - 前端：通过 `build:renderer` 做编译级回归验证；
 - 治理：执行 `kse status --verbose` 与 `kse doctor --docs`。
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **SuiteCapabilityObservabilityRecord**: Core domain record for Suite Capability Observability scenarios.
+- **SuiteCapabilityObservabilityProcess**: Process context handling lifecycle transitions.
+- **SuiteCapabilityObservabilityAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **SuiteCapabilityObservabilityRecord** 1:N **SuiteCapabilityObservabilityProcess** (lifecycle orchestration).
+- **SuiteCapabilityObservabilityProcess** 1:N **SuiteCapabilityObservabilityAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

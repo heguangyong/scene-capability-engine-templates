@@ -118,3 +118,25 @@ kse_version: 3.0.2
 4. `kse doctor --docs` 合规
 5. `CURRENT_CONTEXT.md` 更新本轮结果与风险
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **MoquiCapabilityParityProgramRecord**: Core domain record for Moqui Capability Parity Program scenarios.
+- **MoquiCapabilityParityProgramProcess**: Process context handling lifecycle transitions.
+- **MoquiCapabilityParityProgramAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **MoquiCapabilityParityProgramRecord** 1:N **MoquiCapabilityParityProgramProcess** (lifecycle orchestration).
+- **MoquiCapabilityParityProgramProcess** 1:N **MoquiCapabilityParityProgramAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

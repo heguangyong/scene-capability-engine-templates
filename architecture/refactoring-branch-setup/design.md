@@ -725,3 +725,25 @@ Get-ChildItem -Recurse -Include *.java,*.groovy,*.xml | Measure-Object -Line
 **创建时间**: 2026-02-01  
 **作者**: Kiro AI  
 **状态**: Approved
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **RefactoringBranchSetupRecord**: Core domain record for Refactoring Branch Setup scenarios.
+- **RefactoringBranchSetupProcess**: Process context handling lifecycle transitions.
+- **RefactoringBranchSetupAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **RefactoringBranchSetupRecord** 1:N **RefactoringBranchSetupProcess** (lifecycle orchestration).
+- **RefactoringBranchSetupProcess** 1:N **RefactoringBranchSetupAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

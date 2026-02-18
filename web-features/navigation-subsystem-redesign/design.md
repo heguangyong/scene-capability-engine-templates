@@ -37,3 +37,25 @@ kse_version: 3.0.2
 2. 一级菜单点击后必须有清晰激活态。
 3. 桌面与移动端菜单语义保持一致。
 4. 新旧导航入口映射无重复维护点。
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **NavigationSubsystemRedesignRecord**: Core domain record for Navigation Subsystem Redesign scenarios.
+- **NavigationSubsystemRedesignProcess**: Process context handling lifecycle transitions.
+- **NavigationSubsystemRedesignAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **NavigationSubsystemRedesignRecord** 1:N **NavigationSubsystemRedesignProcess** (lifecycle orchestration).
+- **NavigationSubsystemRedesignProcess** 1:N **NavigationSubsystemRedesignAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

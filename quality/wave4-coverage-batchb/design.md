@@ -37,3 +37,25 @@ kse_version: 3.0.2
    - 运行 `mvn -q -pl app -am test`。
    - 运行 `scripts/quality-baseline.ps1`（SpecSlug=`{{SPEC_NAME}}`）并输出与 `14-00` 的增量报告。
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **Wave4CoverageBatchbRecord**: Core domain record for Wave4 Coverage Batchb scenarios.
+- **Wave4CoverageBatchbProcess**: Process context handling lifecycle transitions.
+- **Wave4CoverageBatchbAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **Wave4CoverageBatchbRecord** 1:N **Wave4CoverageBatchbProcess** (lifecycle orchestration).
+- **Wave4CoverageBatchbProcess** 1:N **Wave4CoverageBatchbAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

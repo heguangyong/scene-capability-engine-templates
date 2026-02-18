@@ -285,3 +285,11 @@ stateDiagram-v2
 - **Framework**: JUnit 5 + jqwik (property-based testing) for backend
 
 **Validates: Requirements 1-5**
+
+
+## Ontology Model (Backfilled)
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.

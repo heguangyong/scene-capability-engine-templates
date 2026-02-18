@@ -40,3 +40,25 @@ kse_version: 3.0.2
 - 前端构建验证：`npm run build:renderer`
 - KSE 治理验证：`scene package-validate`、`ontology validate/impact/path`、`templates create-from-spec`、`status`、`doctor`
 
+
+
+## Ontology Model (Backfilled)
+
+### Entities
+- **SuiteNativeUiParityAuditRecord**: Core domain record for Suite Native Ui Parity Audit scenarios.
+- **SuiteNativeUiParityAuditProcess**: Process context handling lifecycle transitions.
+- **SuiteNativeUiParityAuditAuditEvent**: Immutable operation/audit trace entry.
+
+### Relations
+- **SuiteNativeUiParityAuditRecord** 1:N **SuiteNativeUiParityAuditProcess** (lifecycle orchestration).
+- **SuiteNativeUiParityAuditProcess** 1:N **SuiteNativeUiParityAuditAuditEvent** (traceability and compliance).
+
+### Business Rules
+- **BR-001**: Mandatory fields must pass validation before persistence.
+- **BR-002**: State transitions must comply with lifecycle policy.
+- **BR-003**: Every mutating operation must emit an audit event.
+
+### Decision Logic
+- **DL-001**: If record does not exist, route to create flow; otherwise update flow.
+- **DL-002**: If requested transition is invalid, reject and return violation reason.
+- **DL-003**: If post-check fails, rollback and mark operation as failed.
