@@ -1,25 +1,16 @@
-﻿---
-name: Scene Composition Interaction Hardening
-category: web-features
-description: Template for strengthening scene-canvas interaction with suite filters, dependency hints, and fast module navigation.
-difficulty: intermediate
-tags:
-  - scene
-  - interaction
-  - dependency
-  - suite-hub
-  - routing
-applicable_scenarios:
-  - Adding suite-level filtering to scene cards
-  - Surfacing module dependencies with quick jump actions
-  - Hardening scene-canvas interaction without breaking existing routing
+---
+name: scene-composition-interaction-hardening
+category: other
+description: Template for Scene Composition Interaction Hardening
+tags: []
 author: FallingAKS
-created_at: 2026-02-18
-updated_at: 2026-02-18
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
 kse_version: 3.0.2
 ---
-# 需求文档：场景编排交互加固
+
+# 需求文档：场景编排交互加固（68-02）
 
 ## 概述
 
@@ -40,5 +31,4 @@ kse_version: 3.0.2
 2.1 模块卡显示主要依赖模块  
 2.2 提供快速跳转依赖模块入口  
 2.3 缺失依赖数据时提供兜底文案
-
 

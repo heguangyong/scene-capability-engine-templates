@@ -1,13 +1,13 @@
-﻿---
+---
 name: master-data-deepening
-category: backend-features
+category: other
 description: Template for Master Data Deepening
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 任务清单：主数据深能力（60-01）
@@ -17,4 +17,3 @@ kse_version: 1.47.7
 - [x] 3 实现路由多版本绑定能力
 - [x] 4 前端表单与详情页对齐
 - [x] 5 构建与测试并更新文档
-

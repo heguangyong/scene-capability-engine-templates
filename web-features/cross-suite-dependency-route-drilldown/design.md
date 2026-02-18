@@ -1,25 +1,16 @@
-﻿---
-name: Cross-Suite Dependency Route Drilldown
-category: web-features
-description: Template for exposing cross-suite dependency paths and enabling route-level drilldown in scene execution panels.
-difficulty: advanced
-tags:
-  - scene
-  - dependency
-  - drilldown
-  - suite-hub
-  - routing
-applicable_scenarios:
-  - Showing dependency routes per execution step
-  - Navigating between related modules across suites
-  - Reducing ambiguity in cross-suite execution chains
+---
+name: cross-suite-dependency-route-drilldown
+category: other
+description: Template for Cross Suite Dependency Route Drilldown
+tags: []
 author: FallingAKS
-created_at: 2026-02-18
-updated_at: 2026-02-18
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
 kse_version: 3.0.2
 ---
-# 设计文档：跨套件依赖路径钻取
+
+# 设计文档：跨套件依赖路径钻取（69-02）
 
 ## 页面范围
 
@@ -35,4 +26,3 @@ kse_version: 3.0.2
 
 - `npm run build`（frontend）
 - `/suite-hub` 依赖路径可见且可跳转
-

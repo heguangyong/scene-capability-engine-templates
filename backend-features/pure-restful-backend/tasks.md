@@ -4,13 +4,13 @@ category: other
 description: Template for Pure Restful Backend
 tags: []
 author: FallingAKS
-created_at: '2026-02-10'
-updated_at: '2026-02-10'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.40.0
+kse_version: 3.0.2
 ---
 
-# Implementation Plan: Pure RESTful Backend
+﻿# Implementation Plan: Pure RESTful Backend
 
 ## Overview
 
@@ -24,7 +24,7 @@ Bottom-up implementation in two major phases: (1) core REST framework (config, r
     - Load from `rest-api.properties`, override with `REST_API_PORT`, `REST_API_HOST`, etc.
     - Include defaults: host=0.0.0.0, port=8080, minThreads=8, maxThreads=200, shutdownTimeout=30000
     - _Requirements: 12.1, 12.2, 12.3, 12.4_
-  - [ ]* 1.2 Write property test for RestConfig loading
+  - [x]* 1.2 Write property test for RestConfig loading
     - **Property 18: Configuration loading with environment variable overrides**
     - **Validates: Requirements 12.1, 12.2, 12.3**
   - [x] 1.3 Create `RouteHandler` functional interface and `RouteMatch` class
@@ -37,7 +37,7 @@ Bottom-up implementation in two major phases: (1) core REST framework (config, r
     - Implement literal-over-parameter priority
     - Implement 405 detection (path matches but method doesn't)
     - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6_
-  - [ ]* 1.5 Write property tests for Router
+  - [x]* 1.5 Write property tests for Router
     - **Property 1: Route matching with parameter extraction**
     - **Property 2: Literal route priority over parameterized routes**
     - **Property 3: Method Not Allowed response**
@@ -54,7 +54,7 @@ Bottom-up implementation in two major phases: (1) core REST framework (config, r
     - Create `org.moqui.rest.Middleware` interface with `boolean handle(RequestContext ctx, RouteMatch route)`
     - Create `MiddlewarePipeline` that chains middleware and short-circuits on rejection
     - _Requirements: 3.1, 3.2_
-  - [ ]* 2.2 Write property test for middleware short-circuit
+  - [x]* 2.2 Write property test for middleware short-circuit
     - **Property 5: Middleware short-circuit on rejection**
     - **Validates: Requirements 3.2**
   - [x] 2.3 Implement `SecurityHeadersMiddleware`
@@ -77,7 +77,7 @@ Bottom-up implementation in two major phases: (1) core REST framework (config, r
     - Set userId on RequestContext
     - Return 401 with TOKEN_EXPIRED or AUTHENTICATION_REQUIRED on failure
     - _Requirements: 3.3, 3.4, 3.5, 3.6_
-  - [ ]* 2.7 Write property tests for JWT middleware
+  - [x]* 2.7 Write property tests for JWT middleware
     - **Property 6: Public routes skip JWT authentication**
     - **Property 7: JWT token validation populates request context**
     - **Property 8: JWT rejects invalid tokens with correct error codes**
@@ -95,7 +95,7 @@ Bottom-up implementation in two major phases: (1) core REST framework (config, r
     - Implement graceful shutdown with configurable timeout
     - Log registered routes at startup
     - _Requirements: 1.1, 1.2, 1.4, 1.6, 1.7_
-  - [ ]* 3.2 Write property test for 404 on unregistered paths
+  - [x]* 3.2 Write property test for 404 on unregistered paths
     - **Property 4: Unknown resource returns 404**
     - **Validates: Requirements 1.5, 5.7, 6.4**
 
@@ -110,7 +110,7 @@ Bottom-up implementation in two major phases: (1) core REST framework (config, r
     - Implement refresh: delegate to JwtUtil.refreshAccessToken()
     - Implement logout: delegate to JwtUtil.revokeToken()
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7_
-  - [ ]* 5.2 Write property tests for AuthService
+  - [x]* 5.2 Write property tests for AuthService
     - **Property 9: Successful login returns tokens and resets failure counter**
     - **Property 10: Invalid login returns 401**
     - **Property 11: Token refresh and revocation round-trip**
@@ -132,7 +132,7 @@ Bottom-up implementation in two major phases: (1) core REST framework (config, r
     - Implement delete: delegate to Moqui implicit delete service
     - Use InputSanitizer for entity name validation
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9_
-  - [ ]* 6.2 Write property tests for EntityCrudService
+  - [x]* 6.2 Write property tests for EntityCrudService
     - **Property 12: Entity CRUD round-trip**
     - **Property 13: Entity listing with query parameters**
     - **Validates: Requirements 5.1, 5.2, 5.3, 5.4, 5.5, 5.6**
@@ -149,7 +149,7 @@ Bottom-up implementation in two major phases: (1) core REST framework (config, r
     - Implement invokeAsync: create AsyncJobRecord, execute async, return jobId
     - Implement getJobStatus: query AsyncJobRecord entity
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 6.6_
-  - [ ]* 7.2 Write property test for service invocation
+  - [x]* 7.2 Write property test for service invocation
     - **Property 14: Service invocation parameter pass-through**
     - **Validates: Requirements 6.1, 6.6**
   - [x] 7.3 Create `ServiceController` with route registration
@@ -183,7 +183,7 @@ Bottom-up implementation in two major phases: (1) core REST framework (config, r
     - WorkflowController: CRUD under `/api/v1/workflows` (delegate to EntityCrudService)
     - AssetController: CRUD under `/api/v1/assets` (delegate to EntityCrudService)
     - _Requirements: 7.1, 7.8, 7.9, 7.10_
-  - [ ]* 9.5 Write property test for standardized response format
+  - [x]* 9.5 Write property test for standardized response format
     - **Property 15: Standardized response format with security headers**
     - **Property 16: Pagination metadata completeness**
     - **Validates: Requirements 8.1, 8.2, 8.3, 8.4, 10.1**
@@ -204,7 +204,7 @@ Bottom-up implementation in two major phases: (1) core REST framework (config, r
   - [x] 10.3 Implement root URL redirect
     - GET / → redirect to /api/v1/docs
     - _Requirements: 1.3_
-  - [ ]* 10.4 Write property test for OpenAPI spec generation
+  - [x]* 10.4 Write property test for OpenAPI spec generation
     - **Property 17: OpenAPI spec contains all registered routes**
     - **Validates: Requirements 9.3**
 
@@ -379,3 +379,4 @@ Bottom-up implementation in two major phases: (1) core REST framework (config, r
   - Phase D (Task 17): Component AI services (HiveMind, PopCommerce, MarbleERP)
   - Task 18: Final verification — scan for remaining Groovy, full build validation
 - 2 Groovy source files (ScreenForm.groovy, ScreenRenderImpl.groovy) remain as tracked tech debt — not in scope for this spec
+

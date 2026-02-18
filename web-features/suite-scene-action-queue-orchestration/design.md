@@ -1,25 +1,16 @@
-﻿---
-name: Suite Scene Action Queue Orchestration
-category: web-features
-description: Template for mapping decision signals to actionable queues with owner/SLA assignment and checklist visibility.
-difficulty: advanced
-tags:
-  - scene
-  - action-queue
-  - orchestration
-  - sla
-  - owner
-applicable_scenarios:
-  - Turning decision signals into execution queues
-  - Assigning owners and SLAs by priority levels
-  - Maintaining action-checklist visibility in suite hubs
+---
+name: suite-scene-action-queue-orchestration
+category: other
+description: Template for Suite Scene Action Queue Orchestration
+tags: []
 author: FallingAKS
-created_at: 2026-02-18
-updated_at: 2026-02-18
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
 kse_version: 3.0.2
 ---
-# 设计文档：Suite 场景行动队列编排
+
+# 设计文档：Suite 场景行动队列编排（71-01）
 
 ## 页面范围
 
@@ -35,4 +26,3 @@ kse_version: 3.0.2
 
 - `npm run build`（frontend）
 - `/suite-hub` 可见行动队列并与模块切换联动
-

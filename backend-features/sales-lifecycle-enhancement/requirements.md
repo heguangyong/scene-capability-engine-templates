@@ -1,13 +1,13 @@
-﻿---
+---
 name: sales-lifecycle-enhancement
-category: backend-features
+category: other
 description: Template for Sales Lifecycle Enhancement
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 需求文档：销售全生命周期增强（60-02）
@@ -31,5 +31,4 @@ kse_version: 1.47.7
 ### 需求 3：异常与回退
 3.1 退货流程与原订单可追溯  
 3.2 支持关键节点审计日志
-
 

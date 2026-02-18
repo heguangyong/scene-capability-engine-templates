@@ -1,13 +1,13 @@
-﻿---
+---
 name: project-wbs-management
-category: backend-features
+category: other
 description: Template for Project Wbs Management
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 设计文档：项目与 WBS 管理（60-06）
@@ -23,5 +23,4 @@ kse_version: 1.47.7
 - 项目与 WBS 可完整 CRUD
 - 单据可关联项目并汇总成本
 - 项目看板可展示进度与成本
-
 

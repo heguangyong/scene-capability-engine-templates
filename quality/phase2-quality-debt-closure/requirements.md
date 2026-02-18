@@ -4,10 +4,10 @@ category: other
 description: Template for Phase2 Quality Debt Closure
 tags: []
 author: FallingAKS
-created_at: '2026-02-10'
-updated_at: '2026-02-10'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.40.0
+kse_version: 3.0.2
 ---
 
 # Requirements: Phase 2 质量债收敛（12-00）
@@ -68,5 +68,5 @@ kse_version: 1.40.0
 
 1. WHEN 完成本轮推进 THEN 系统 SHALL 更新本 Spec `tasks.md`。
 2. WHEN 会话结束 THEN 系统 SHALL 更新 `.kiro/steering/CURRENT_CONTEXT.md`。
-3. WHEN 收尾验证 THEN 系统 SHALL 至少执行 `sce status` 与 `sce docs validate --all`。
+3. WHEN 收尾验证 THEN 系统 SHALL 至少执行 `kse status` 与 `kse docs validate --all`。
 

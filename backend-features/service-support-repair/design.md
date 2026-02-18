@@ -1,13 +1,13 @@
-﻿---
+---
 name: service-support-repair
-category: backend-features
+category: other
 description: Template for Service Support Repair
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 设计文档：服务保障与维修（60-07）
@@ -23,5 +23,4 @@ kse_version: 1.47.7
 - 通知与维修工单链路可闭环
 - 返修成本可追溯
 - 故障统计报表可查询
-
 

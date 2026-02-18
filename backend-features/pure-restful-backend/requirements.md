@@ -4,10 +4,10 @@ category: other
 description: Template for Pure Restful Backend
 tags: []
 author: FallingAKS
-created_at: '2026-02-10'
-updated_at: '2026-02-10'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.40.0
+kse_version: 3.0.2
 ---
 
 # Requirements Document

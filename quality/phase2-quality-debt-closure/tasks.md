@@ -4,10 +4,10 @@ category: other
 description: Template for Phase2 Quality Debt Closure
 tags: []
 author: FallingAKS
-created_at: '2026-02-10'
-updated_at: '2026-02-10'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.40.0
+kse_version: 3.0.2
 ---
 
 # Implementation Plan: Phase 2 质量债收敛（12-00）
@@ -35,6 +35,6 @@ kse_version: 1.40.0
   - [x] 4.3 输出 Wave 1 计划文档
 
 - [x] 5 验证与收尾
-  - [x] 5.1 执行 `sce status`
-  - [x] 5.2 执行 `sce docs validate --all`
+  - [x] 5.1 执行 `kse status`
+  - [x] 5.2 执行 `kse docs validate --all`
   - [x] 5.3 更新 `.kiro/steering/CURRENT_CONTEXT.md`

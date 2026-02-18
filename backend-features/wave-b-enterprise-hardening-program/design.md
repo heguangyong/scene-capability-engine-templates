@@ -1,13 +1,13 @@
 ---
 name: wave-b-enterprise-hardening-program
-category: backend-features
+category: other
 description: Template for Wave B Enterprise Hardening Program
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 设计文档：Wave B 企业级能力加固总控（61-00）
@@ -104,5 +104,4 @@ kse_version: 1.47.7
 2. 子 Spec 图谱与 runbook 完成
 3. scene/collaboration 完成且可校验
 4. CURRENT_CONTEXT 更新
-5. `sce status` 与 `sce docs validate --all` 通过
-
+5. `kse status` 与 `kse docs validate --all` 通过

@@ -1,13 +1,13 @@
-﻿---
+---
 name: data-migration-domestic-validation
-category: backend-features
+category: other
 description: Template for Data Migration Domestic Validation
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 设计文档：数据迁移与国产环境验证（60-12）
@@ -23,5 +23,4 @@ kse_version: 1.47.7
 - 迁移任务可执行可回滚
 - 兼容性验证有结构化结果
 - 升级兼容报告可审计
-
 

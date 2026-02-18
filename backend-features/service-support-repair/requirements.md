@@ -1,13 +1,13 @@
-﻿---
+---
 name: service-support-repair
-category: backend-features
+category: other
 description: Template for Service Support Repair
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 需求文档：服务保障与维修（60-07）
@@ -29,5 +29,4 @@ kse_version: 1.47.7
 ### 需求 3：分析与成本
 3.1 支持返修成本归集  
 3.2 支持故障与替换率分析
-
 

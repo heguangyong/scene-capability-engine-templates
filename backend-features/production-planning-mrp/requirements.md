@@ -1,13 +1,13 @@
-﻿---
+---
 name: production-planning-mrp
-category: backend-features
+category: other
 description: Template for Production Planning Mrp
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 需求文档：生产计划与 MRP 增强（60-03）
@@ -30,5 +30,4 @@ kse_version: 1.47.7
 ### 需求 3：执行联动
 3.1 计划订单可转生产/采购  
 3.2 产能负载可视化与预警
-
 

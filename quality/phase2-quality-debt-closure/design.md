@@ -4,10 +4,10 @@ category: other
 description: Template for Phase2 Quality Debt Closure
 tags: []
 author: FallingAKS
-created_at: '2026-02-10'
-updated_at: '2026-02-10'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.40.0
+kse_version: 3.0.2
 ---
 
 # Design: Phase 2 质量债收敛（12-00）
@@ -50,6 +50,6 @@ kse_version: 1.40.0
 ## 验证闭环
 
 1. 执行质量基线脚本并成功产出报告。
-2. `sce status` 可看到本 Spec 任务推进。
-3. `sce docs validate --all` 保持合规。
+2. `kse status` 可看到本 Spec 任务推进。
+3. `kse docs validate --all` 保持合规。
 

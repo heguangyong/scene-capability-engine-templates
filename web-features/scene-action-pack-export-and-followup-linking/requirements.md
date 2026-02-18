@@ -1,25 +1,16 @@
-﻿---
-name: Scene Action Pack Export and Follow-up Linking
-category: web-features
-description: Template for exporting action packs from action queues and linking follow-up workflows for agents and operators.
-difficulty: advanced
-tags:
-  - scene
-  - action-pack
-  - export
-  - follow-up
-  - orchestration
-applicable_scenarios:
-  - Producing copy-ready action packs for distributed execution
-  - Linking action queue outputs to follow-up workflows
-  - Preserving runbook and traceability features while exporting action packs
+---
+name: scene-action-pack-export-and-followup-linking
+category: other
+description: Template for Scene Action Pack Export And Followup Linking
+tags: []
 author: FallingAKS
-created_at: 2026-02-18
-updated_at: 2026-02-18
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
 kse_version: 3.0.2
 ---
-# 需求文档：场景行动包导出与跟进联动
+
+# 需求文档：场景行动包导出与跟进联动（71-02）
 
 ## 概述
 
@@ -40,4 +31,3 @@ kse_version: 3.0.2
 2.1 支持一键复制行动包  
 2.2 成功和失败反馈语义清晰  
 2.3 不影响 Runbook 与路径复制功能
-

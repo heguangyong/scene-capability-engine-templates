@@ -1,13 +1,13 @@
-﻿---
+---
 name: costing-settlement-enhancement
-category: backend-features
+category: other
 description: Template for Costing Settlement Enhancement
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 设计文档：成本核算与结算增强（60-05）
@@ -23,5 +23,4 @@ kse_version: 1.47.7
 - 标准成本可计算可发布
 - 实际成本可归集且可追溯
 - 差异分析和结算结果可查询导出
-
 

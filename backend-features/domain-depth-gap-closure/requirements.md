@@ -4,10 +4,10 @@ category: other
 description: Template for Domain Depth Gap Closure
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 需求文档：业务深度缺口收敛（62-02）

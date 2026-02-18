@@ -1,13 +1,13 @@
-﻿---
+---
 name: workflow-approval-engine
-category: backend-features
+category: other
 description: Template for Workflow Approval Engine
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 任务清单：工作流与审批引擎（60-10）
@@ -17,4 +17,3 @@ kse_version: 1.47.7
 - [x] 3 对接订单/采购/工程变更
 - [x] 4 实现审批中心前端界面
 - [x] 5 测试、构建与文档更新
-

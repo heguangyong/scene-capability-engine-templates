@@ -1,13 +1,13 @@
-﻿---
+---
 name: moqui-capability-itemized-parity-matrix
-category: backend-features
+category: other
 description: Template for Moqui Capability Itemized Parity Matrix
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 需求文档：能力项级对齐矩阵（62-01）
@@ -29,4 +29,3 @@ kse_version: 1.47.7
 3.1 导出对齐矩阵文档  
 3.2 生成缺口台账供 62-02~62-05 消化  
 3.3 CURRENT_CONTEXT 记录统计结果
-

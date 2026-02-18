@@ -1,13 +1,13 @@
-﻿---
+---
 name: project-wbs-management
-category: backend-features
+category: other
 description: Template for Project Wbs Management
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 需求文档：项目与 WBS 管理（60-06）
@@ -29,5 +29,4 @@ kse_version: 1.47.7
 ### 需求 3：业务联动
 3.1 生产/采购/库存单据可归属项目  
 3.2 支持项目成本汇总分析
-
 

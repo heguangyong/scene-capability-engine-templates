@@ -1,13 +1,13 @@
 ---
 name: 331-gap-zero-closure
-category: backend-features
+category: other
 description: Template for 331 Gap Zero Closure
-tags: [331, gap, zero, closure]
+tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 需求文档：331 评估缺口清零（62-05）

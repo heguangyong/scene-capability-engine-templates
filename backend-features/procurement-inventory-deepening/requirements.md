@@ -1,13 +1,13 @@
-﻿---
+---
 name: procurement-inventory-deepening
-category: backend-features
+category: other
 description: Template for Procurement Inventory Deepening
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 需求文档：采购与库存深能力（60-04）
@@ -30,5 +30,4 @@ kse_version: 1.47.7
 ### 需求 3：库存追溯增强
 3.1 支持批次上下游追溯  
 3.2 支持序列号全链路追踪
-
 

@@ -1,13 +1,13 @@
 ---
 name: wave-b-enterprise-hardening-program
-category: backend-features
+category: other
 description: Template for Wave B Enterprise Hardening Program
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 需求文档：Wave B 企业级能力加固总控（61-00）
@@ -62,7 +62,7 @@ kse_version: 1.47.7
 
 4.1 输出 `docs/scene.yaml`（非模板，包含真实边界）  
 4.2 输出 `docs/collaboration.json`（Master 类型、状态可追踪）  
-4.3 保证 `sce docs validate --all` 通过
+4.3 保证 `kse docs validate --all` 通过
 
 ---
 
@@ -75,4 +75,3 @@ kse_version: 1.47.7
 5.1 更新 `.kiro/steering/CURRENT_CONTEXT.md` 记录 `61-00` 结果  
 5.2 更新下一步默认动作（指向 Wave B 第一子 Spec）  
 5.3 状态字段与版本号同步更新
-

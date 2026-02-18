@@ -1,13 +1,13 @@
 ---
 name: moqui-full-capability-closure-program
-category: backend-features
+category: other
 description: Template for Moqui Full Capability Closure Program
-tags: [moqui, full, capability, closure, orchestration]
+tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 设计文档：Moqui 全能力补齐与模板化总控（62-00）
@@ -111,6 +111,6 @@ kse_version: 1.47.7
 
 1. 已形成并批准 `62-01 ~ 62-06` 执行图谱
 2. 差距矩阵可追踪到能力项级，且 P0/P1 缺口清零
-3. 模板产物可被 `sce templates` 发现和复用
-4. `sce status --verbose`、`sce doctor --docs` 均通过
+3. 模板产物可被 `kse templates` 发现和复用
+4. `kse status --verbose`、`kse doctor --docs` 均通过
 5. `CURRENT_CONTEXT.md` 完整记录本轮结果与下一批计划

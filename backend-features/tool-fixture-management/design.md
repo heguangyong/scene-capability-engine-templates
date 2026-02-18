@@ -1,13 +1,13 @@
-﻿---
+---
 name: tool-fixture-management
-category: backend-features
+category: other
 description: Template for Tool Fixture Management
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 设计文档：工装夹具管理（60-08）
@@ -23,5 +23,4 @@ kse_version: 1.47.7
 - 工装生命周期流程可追溯
 - 校准预警可触发
 - 条码标识可用于查询
-
 

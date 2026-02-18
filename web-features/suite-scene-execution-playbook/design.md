@@ -1,25 +1,16 @@
-﻿---
-name: Suite Scene Execution Playbook
-category: web-features
-description: Template for building a scene execution playbook panel with phase/action drilldown and ER/BR/DL mapping.
-difficulty: advanced
-tags:
-  - scene
-  - execution
-  - playbook
-  - suite-hub
-  - drilldown
-applicable_scenarios:
-  - Creating execution step matrices from scene blueprints
-  - Providing module-level scene drilldown for operators
-  - Keeping execution views aligned with scene canvas data
+---
+name: suite-scene-execution-playbook
+category: other
+description: Template for Suite Scene Execution Playbook
+tags: []
 author: FallingAKS
-created_at: 2026-02-18
-updated_at: 2026-02-18
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
 kse_version: 3.0.2
 ---
-# 设计文档：Suite 场景执行手册
+
+# 设计文档：Suite 场景执行手册（69-01）
 
 ## 页面范围
 
@@ -36,4 +27,3 @@ kse_version: 3.0.2
 
 - `npm run build`（frontend）
 - `/suite-hub` 可见执行钻取与步骤矩阵
-

@@ -1,13 +1,13 @@
-﻿---
+---
 name: master-data-deepening
-category: backend-features
+category: other
 description: Template for Master Data Deepening
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 需求文档：主数据深能力（60-01）
@@ -31,5 +31,4 @@ kse_version: 1.47.7
 ### 需求 3：路由与主数据联动
 3.1 支持物料-路由多版本绑定  
 3.2 路由工序支持能力与时间标准字段
-
 

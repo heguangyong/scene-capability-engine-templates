@@ -1,13 +1,13 @@
-﻿---
+---
 name: reporting-audit-ops
-category: backend-features
+category: other
 description: Template for Reporting Audit Ops
 tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 设计文档：报表、审计与运维（60-11）
@@ -23,5 +23,4 @@ kse_version: 1.47.7
 - 报表支持参数化查询与导出
 - 审计日志支持按业务对象检索
 - 监控告警可覆盖核心接口
-
 

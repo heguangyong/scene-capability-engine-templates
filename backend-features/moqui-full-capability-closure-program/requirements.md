@@ -1,13 +1,13 @@
 ---
 name: moqui-full-capability-closure-program
-category: backend-features
+category: other
 description: Template for Moqui Full Capability Closure Program
-tags: [moqui, full, capability, closure, orchestration]
+tags: []
 author: FallingAKS
-created_at: '2026-02-16'
-updated_at: '2026-02-16'
+created_at: '2026-02-18'
+updated_at: '2026-02-18'
 version: 1.0.0
-kse_version: 1.47.7
+kse_version: 3.0.2
 ---
 
 # 需求文档：Moqui 全能力补齐与模板化总控（62-00）
@@ -44,7 +44,7 @@ kse_version: 1.47.7
 2.1 汇总 `60-00` 与 `61-00` 的剩余缺口，形成统一 backlog  
 2.2 P0/P1 缺口在本轮收敛为 `0`；P2 需进入明确排期并具备验收口径  
 2.3 每项补齐必须包含 API/前端/文档三类至少两类证据  
-2.4 通过 `sce status --verbose` 显示任务完成且治理合规
+2.4 通过 `kse status --verbose` 显示任务完成且治理合规
 
 ---
 
@@ -56,7 +56,7 @@ kse_version: 1.47.7
 
 3.1 输出“能力补齐型 Spec 模板”（requirements/design/tasks/docs 结构）  
 3.2 模板内置：能力矩阵、差距分级、Scene 合同、主从编排、DoD 清单  
-3.3 通过 `sce templates create-from-spec` 生成模板产物并可被 `sce templates list/show` 识别  
+3.3 通过 `kse templates create-from-spec` 生成模板产物并可被 `kse templates list/show` 识别  
 3.4 给出模板使用说明（如何初始化、如何批量执行、如何回填上下文）
 
 ---
